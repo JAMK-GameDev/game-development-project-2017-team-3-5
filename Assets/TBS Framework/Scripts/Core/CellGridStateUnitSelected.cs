@@ -54,6 +54,8 @@ class CellGridStateUnitSelected : CellGridState
         }
             
     }
+	
+	/*
     public override void OnCellDeselected(Cell cell)
     {
         base.OnCellDeselected(cell);
@@ -67,6 +69,8 @@ class CellGridStateUnitSelected : CellGridState
             _cell.UnMark();
         }
     }
+	*/
+	
     public override void OnCellSelected(Cell cell)
     {
         base.OnCellSelected(cell);

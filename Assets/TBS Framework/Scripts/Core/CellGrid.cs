@@ -123,9 +123,12 @@ public class CellGrid : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
-        if(GameStarted != null)
+        /*
+        if (GameStarted != null)
             GameStarted.Invoke(this, new EventArgs());
-
+        
+        ClockTick();
+        */
         Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
         Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
     }
@@ -150,8 +153,103 @@ public class CellGrid : MonoBehaviour
 
         if (TurnEnded != null)
             TurnEnded.Invoke(this, new EventArgs());
+		
+		//.Invoke(this, new EventArgs()
 
         Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
         Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);     
     }
+	
+	public void ClockTick() {
+		
+		Units.ForEach(c => { c.AddCT(); }); //Ct gets added to each unit
+
+
+        //bool FullCT = Units.Any(c => c.ChargeTime <= 100); //checks if any unit has more or equal to 100 CT
+
+
+        var UnitOrderCT = Units.FindAll(c => c.ChargeTime <= 100); //Makes a list of units with full CT
+        var UnitNumber = UnitOrderCT.Count();
+
+        while (UnitNumber != 0) { // Loop runs while there is unit with FullCT and stops when there is none
+			
+			    // vv sorting values
+			    // var UnitOrderCT = Units.FindAll(c => c.ChargeTime <= 100); //Makes a list of units with full CT
+                // var UnitNumber = UnitOrderCT.Count(); 	 
+			
+				
+				Unit swap; //for sorting
+
+           
+
+				//int single; //When there is only one player's turn
+	
+			
+			
+			//Sorting done to determine order of characters that have their CT 100
+				if (UnitNumber > 1) { //checks if there is more then one character getting a turn, if so sorts
+
+					for (int c = 0; c < (UnitNumber - 1); c++) //bubble sorting, overkill for the sample size, but I prefer having it for sorting the order of characters based on their CT (not much testing yet)
+					{
+						for (int d = 0; d < UnitNumber - c - 1; d++) //aka it sorts the characters in the order of how much ct they had
+						{
+							
+							
+							if (UnitOrderCT[d].ChargeTime > UnitOrderCT[d+1].ChargeTime) 
+							{
+								swap = UnitOrderCT[d];
+                                UnitOrderCT[d] = UnitOrderCT[d + 1];
+                                UnitOrderCT[d + 1] = swap;
+							}
+
+						
+						}
+
+						
+					} //end CT sort
+
+                
+                //this sorts units with equal CT in order of their UnitID
+                for (int c = 0; c < (UnitNumber - 1); c++) //bubble sorting, overkill for the sample size, but I prefer having it for sorting the order of characters based on their CT (not much testing yet)
+                {
+                    for (int d = 0; d < UnitNumber - c - 1; d++) //aka it sorts the characters in the order of how much ct they had
+                    {
+
+
+                        if (UnitOrderCT[d].ChargeTime == UnitOrderCT[d + 1].ChargeTime && UnitOrderCT[d].UnitID > UnitOrderCT[d + 1].UnitID)
+                        {
+                            swap = UnitOrderCT[d];
+                            UnitOrderCT[d] = UnitOrderCT[d + 1];
+                            UnitOrderCT[d + 1] = swap;
+                        }
+
+
+                    }
+
+
+                } //end ID sort
+
+
+
+
+            } //end of sorting
+
+
+            ///Active Turn
+
+            //SetState(new CellGridStateUnitSelected(this));
+
+
+            //Active turn ends (CT of the current unit goes to 0)
+
+            UnitOrderCT = Units.FindAll(c => c.ChargeTime <= 100); //Makes a list of units with full CT
+            UnitNumber = UnitOrderCT.Count();
+
+
+        }//While loop
+		
+	}
+	
+	
+	
 }

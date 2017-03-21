@@ -44,6 +44,16 @@ public abstract class Unit : MonoBehaviour
     /// </summary>
     public Cell Cell { get; set; }
 
+    public int Status;
+	
+	public int RBG; //Reality Break Gauge
+	
+	public int ChargeTime; //Gets filled each clock tick by the speed value
+
+    public int Speed; // Determines how fast character gets their turn by it's value
+	
+	public int UnitID; //Gives Unit a reference number
+	
     public int HitPoints;
     public int AttackRange;
     public int AttackFactor;
@@ -56,7 +66,8 @@ public abstract class Unit : MonoBehaviour
     /// Determines speed of movement animation.
     /// </summary>
     public float MovementSpeed;
-    /// <summary>
+    
+	/// <summary>
     /// Determines how many attacks unit can perform in one turn.
     /// </summary>
     public int ActionPoints;
@@ -113,6 +124,13 @@ public abstract class Unit : MonoBehaviour
 
         SetState(new UnitStateMarkedAsFriendly(this));
     }
+	
+	public virtual void AddCT()
+    {
+        ChargeTime = ChargeTime + Speed;
+        
+    }
+	
     /// <summary>
     /// Method is called at the end of each turn.
     /// </summary>
@@ -254,7 +272,7 @@ public abstract class Unit : MonoBehaviour
     /// <summary>
     /// Method indicates if unit is capable of moving through cell given as parameter.
     /// </summary>
-    public virtual bool IsCellTraversable(Cell cell)
+    public virtual bool IsCellTraversable(Cell cell)//add moving through allies
     {
         return !cell.IsTaken;
     }
