@@ -7,8 +7,11 @@ using System.Collections;
 /// <summary>
 /// Base class for all units in the game.
 /// </summary>
-public abstract class Unit : MonoBehaviour
-{
+public abstract class Unit : MonoBehaviour//Player
+{/*
+	public override void Play(CellGrid cellGrid){
+		cellGrid.CellGridState = new CellGridStateWaitingForInput(cellGrid);
+	}*/
     /// <summary>
     /// UnitClicked event is invoked when user clicks the unit. It requires a collider on the unit game object to work.
     /// </summary>
