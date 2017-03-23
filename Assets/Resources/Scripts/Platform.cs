@@ -6,6 +6,7 @@ public class Platform : MonoBehaviour {
 
 	public GameObject Tile, Ground;
 	public int sizeX, sizeY;
+	public float gapsize = 0.2f;
 	
 	private List<GameObject> list;
 	
@@ -30,9 +31,9 @@ public class Platform : MonoBehaviour {
 				obj.transform.parent = null;
 				//Made some gaps here, lossyScale is readonly.
 				obj.transform.localScale = new Vector3(
-					lenght - 0.2f,						//X
+					lenght - gapsize,					//X
 					Tile.transform.localScale.y,		//Y
-					width - 0.2f);						//Z
+					width - gapsize);					//Z
 				//Position them inside platform, so tiles are in a same size as it, but hovers above it.
 				obj.transform.position = this.transform.position;
 				//Make translate vector. Cast to float so positions to correct spot if 5:4 or similar
