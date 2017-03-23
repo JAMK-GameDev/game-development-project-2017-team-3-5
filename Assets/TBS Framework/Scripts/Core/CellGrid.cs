@@ -12,6 +12,9 @@ public class CellGrid : MonoBehaviour
     public event EventHandler GameStarted;
     public event EventHandler GameEnded;
     public event EventHandler TurnEnded;
+	public event EventHandler ClockTickActive;
+    public event EventHandler ActiveTurnStart;
+	
     
     private CellGridState _cellGridState;//The grid delegates some of its behaviours to cellGridState object.
     public CellGridState CellGridState
@@ -123,15 +126,29 @@ public class CellGrid : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
-        /*
+        
         if (GameStarted != null)
             GameStarted.Invoke(this, new EventArgs());
         
         ClockTick();
-        */
-        Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
-        Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
+        
+        //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
+        //Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
     }
+	
+	public void ActiveTurn(Unit a)
+    {
+        
+        if (ActiveTurnStart != null)
+            ActiveTurnStart.Invoke(this, new EventArgs());
+        
+		a.OnUnitSelected();
+        
+        
+        //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
+        //Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
+    }
+	
     /// <summary>
     /// Method makes turn transitions. It is called by player at the end of his turn.
     /// </summary>
@@ -161,6 +178,9 @@ public class CellGrid : MonoBehaviour
     }
 	
 	public void ClockTick() {
+		
+		if (ClockTickActive != null)
+            ClockTickActive.Invoke(this, new EventArgs());
 		
 		Units.ForEach(c => { c.AddCT(); }); //Ct gets added to each unit
 
@@ -234,9 +254,9 @@ public class CellGrid : MonoBehaviour
 
             } //end of sorting
 
-
+            Unit AT = UnitOrderCT[0];
             ///Active Turn
-
+			ActiveTurn(AT);
             //SetState(new CellGridStateUnitSelected(this));
 
 
