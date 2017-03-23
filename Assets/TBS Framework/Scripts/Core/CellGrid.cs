@@ -129,6 +129,9 @@ public class CellGrid : MonoBehaviour
         
         if (GameStarted != null)
             GameStarted.Invoke(this, new EventArgs());
+
+        int o = 2;
+        o ++;
         
         ClockTick();
         
@@ -142,9 +145,10 @@ public class CellGrid : MonoBehaviour
         if (ActiveTurnStart != null)
             ActiveTurnStart.Invoke(this, new EventArgs());
         
-		a.OnUnitSelected();
-        
-        
+		a.OnTurnStart();
+        Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
+
+
         //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
         //Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
     }
@@ -181,17 +185,23 @@ public class CellGrid : MonoBehaviour
 		
 		if (ClockTickActive != null)
             ClockTickActive.Invoke(this, new EventArgs());
-		
-		Units.ForEach(c => { c.AddCT(); }); //Ct gets added to each unit
+        int UnitNumber = Units.FindAll(c => c.UnitID > 100).Count();
+        var UnitOrderCT = Units.FindAll(c => c.ChargeTime >= 0); //Makes a list of units with full CT
+        
 
+        do {
+            Units.ForEach(c => { c.AddCT(); }); //Ct gets added to each unit
+            UnitOrderCT =  Units.FindAll(c => c.ChargeTime >= 100); //Makes a list of units with full CT
+            UnitNumber = UnitOrderCT.Count();
+
+        } while (UnitNumber == 0);
 
         //bool FullCT = Units.Any(c => c.ChargeTime <= 100); //checks if any unit has more or equal to 100 CT
 
 
-        var UnitOrderCT = Units.FindAll(c => c.ChargeTime <= 100); //Makes a list of units with full CT
-        var UnitNumber = UnitOrderCT.Count();
+   
 
-        while (UnitNumber != 0) { // Loop runs while there is unit with FullCT and stops when there is none
+         // Loop runs while there is unit with FullCT and stops when there is none
 			
 			    // vv sorting values
 			    // var UnitOrderCT = Units.FindAll(c => c.ChargeTime <= 100); //Makes a list of units with full CT
@@ -262,12 +272,13 @@ public class CellGrid : MonoBehaviour
 
             //Active turn ends (CT of the current unit goes to 0)
 
-            UnitOrderCT = Units.FindAll(c => c.ChargeTime <= 100); //Makes a list of units with full CT
-            UnitNumber = UnitOrderCT.Count();
+            
 
 
-        }//While loop
+        //end?
 		
+
+
 	}
 	
 	
