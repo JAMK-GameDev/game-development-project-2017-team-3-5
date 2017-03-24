@@ -40,11 +40,15 @@ public class CellGrid : MonoBehaviour
     }
     public int CurrentPlayerNumber { get; private set; }
 
+    
+
     public Transform PlayersParent;
 
     public List<Player> Players { get; private set; }
     public List<Cell> Cells { get; private set; }
     public List<Unit> Units { get; private set; }
+
+    public Unit CurrentUnit { get; private set; }
 
     void Start()
     {
@@ -144,27 +148,35 @@ public class CellGrid : MonoBehaviour
         
         if (ActiveTurnStart != null)
             ActiveTurnStart.Invoke(this, new EventArgs());
-        
-		a.OnTurnStart();
-        Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
 
 
-        //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
+        CurrentUnit = a;
+        CurrentPlayerNumber = a.PlayerNumber;
+        Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart2(); });
+        a.OnTurnStart();
+        Players.Find(p => p.PlayerNumber.Equals(a.PlayerNumber)).Play(this);
+
+
+        //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart2(); });
         //Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
     }
-	
+
     /// <summary>
     /// Method makes turn transitions. It is called by player at the end of his turn.
     /// </summary>
     public void EndTurn()
     {
+
+        /*
         if (Units.Select(u => u.PlayerNumber).Distinct().Count() == 1)
         {
             return;
         }
+        */
+
         CellGridState = new CellGridStateTurnChanging(this);
 
-        Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnEnd(); });
+       // Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnEnd(); });
 
         CurrentPlayerNumber = (CurrentPlayerNumber + 1) % NumberOfPlayers;
         while (Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).Count == 0)

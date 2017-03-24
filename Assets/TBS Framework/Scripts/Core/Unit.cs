@@ -124,8 +124,16 @@ public abstract class Unit : MonoBehaviour
 
         SetState(new UnitStateMarkedAsFriendly(this));
     }
-	
-	public virtual void AddCT()
+
+    public virtual void OnTurnStart2()
+    {
+        MovementPoints = 0;
+        ActionPoints = 0;
+
+        SetState(new UnitStateMarkedAsFriendly(this));
+    }
+
+    public virtual void AddCT()
     {
         ChargeTime = ChargeTime + Speed;
         
