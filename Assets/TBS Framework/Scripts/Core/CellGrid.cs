@@ -48,7 +48,11 @@ public class CellGrid : MonoBehaviour
     public List<Cell> Cells { get; private set; }
     public List<Unit> Units { get; private set; }
 
+    //new shit vv
     public Unit CurrentUnit { get; private set; }
+    public List<Unit> UnitOrderCT { get; private set; }
+    public int UnitNumber { get; private set; }
+    public bool TurnIsActive { get; private set; }
 
     void Start()
     {
@@ -136,7 +140,7 @@ public class CellGrid : MonoBehaviour
 
         int o = 2;
         o ++;
-        
+        UnitNumber = 0;
         ClockTick();
         
         //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
@@ -149,7 +153,7 @@ public class CellGrid : MonoBehaviour
         if (ActiveTurnStart != null)
             ActiveTurnStart.Invoke(this, new EventArgs());
 
-
+        TurnIsActive = true;
         CurrentUnit = a;
         CurrentPlayerNumber = a.PlayerNumber;
         Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart2(); });
@@ -176,81 +180,103 @@ public class CellGrid : MonoBehaviour
 
         CellGridState = new CellGridStateTurnChanging(this);
 
-       // Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnEnd(); });
+        Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnEnd(); });
 
+        /*
         CurrentPlayerNumber = (CurrentPlayerNumber + 1) % NumberOfPlayers;
         while (Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).Count == 0)
         {
             CurrentPlayerNumber = (CurrentPlayerNumber + 1)%NumberOfPlayers;
         }//Skipping players that are defeated.
+        */
 
         if (TurnEnded != null)
             TurnEnded.Invoke(this, new EventArgs());
-		
-		//.Invoke(this, new EventArgs()
 
-        Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
-        Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);     
+        //.Invoke(this, new EventArgs()
+        CurrentUnit.ChargeTime = 0;
+        if (CurrentUnit.ActionPoints != 0) { CurrentUnit.ChargeTime += 20; }
+        if (CurrentUnit.MovementPoints != 0) { CurrentUnit.ChargeTime += 20; }
+
+        UnitOrderCT = Units.FindAll(c => c.ChargeTime >= 100); //Makes a list of units with full CT
+        UnitNumber = UnitOrderCT.Count();
+        ClockTick();
+
+
+        //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
+        //Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);     
     }
-	
+
+    /*
+    public void NotActiveTurn()
+    {
+
+        ClockTick();
+    }
+	*/
+
+
 	public void ClockTick() {
 		
 		if (ClockTickActive != null)
             ClockTickActive.Invoke(this, new EventArgs());
-        int UnitNumber = Units.FindAll(c => c.UnitID > 100).Count();
-        var UnitOrderCT = Units.FindAll(c => c.ChargeTime >= 0); //Makes a list of units with full CT
-        
 
-        do {
+
+
+        while (UnitNumber == 0){
+            TurnIsActive = false;
             Units.ForEach(c => { c.AddCT(); }); //Ct gets added to each unit
-            UnitOrderCT =  Units.FindAll(c => c.ChargeTime >= 100); //Makes a list of units with full CT
+            UnitOrderCT = Units.FindAll(c => c.ChargeTime >= 100); //Makes a list of units with full CT
             UnitNumber = UnitOrderCT.Count();
 
-        } while (UnitNumber == 0);
+        }
+
+        
 
         //bool FullCT = Units.Any(c => c.ChargeTime <= 100); //checks if any unit has more or equal to 100 CT
 
 
-   
 
-         // Loop runs while there is unit with FullCT and stops when there is none
-			
-			    // vv sorting values
-			    // var UnitOrderCT = Units.FindAll(c => c.ChargeTime <= 100); //Makes a list of units with full CT
-                // var UnitNumber = UnitOrderCT.Count(); 	 
-			
-				
-				Unit swap; //for sorting
 
-           
+        // Loop runs while there is unit with FullCT and stops when there is none
 
-				//int single; //When there is only one player's turn
-	
-			
-			
-			//Sorting done to determine order of characters that have their CT 100
-				if (UnitNumber > 1) { //checks if there is more then one character getting a turn, if so sorts
+        // vv sorting values
+        // var UnitOrderCT = Units.FindAll(c => c.ChargeTime <= 100); //Makes a list of units with full CT
+        // var UnitNumber = UnitOrderCT.Count(); 	 
 
-					for (int c = 0; c < (UnitNumber - 1); c++) //bubble sorting, overkill for the sample size, but I prefer having it for sorting the order of characters based on their CT (not much testing yet)
-					{
-						for (int d = 0; d < UnitNumber - c - 1; d++) //aka it sorts the characters in the order of how much ct they had
-						{
-							
-							
-							if (UnitOrderCT[d].ChargeTime > UnitOrderCT[d+1].ChargeTime) 
-							{
-								swap = UnitOrderCT[d];
-                                UnitOrderCT[d] = UnitOrderCT[d + 1];
-                                UnitOrderCT[d + 1] = swap;
-							}
 
-						
-						}
+        Unit swap; //for sorting
 
-						
-					} //end CT sort
 
-                
+
+        //int single; //When there is only one player's turn
+
+        
+
+            //Sorting done to determine order of characters that have their CT 100
+            if (UnitNumber > 1)
+            { //checks if there is more then one character getting a turn, if so sorts
+
+                for (int c = 0; c < (UnitNumber - 1); c++) //bubble sorting, overkill for the sample size, but I prefer having it for sorting the order of characters based on their CT (not much testing yet)
+                {
+                    for (int d = 0; d < UnitNumber - c - 1; d++) //aka it sorts the characters in the order of how much ct they had
+                    {
+
+
+                        if (UnitOrderCT[d].ChargeTime > UnitOrderCT[d + 1].ChargeTime)
+                        {
+                            swap = UnitOrderCT[d];
+                            UnitOrderCT[d] = UnitOrderCT[d + 1];
+                            UnitOrderCT[d + 1] = swap;
+                        }
+
+
+                    }
+
+
+                } //end CT sort
+
+
                 //this sorts units with equal CT in order of their UnitID
                 for (int c = 0; c < (UnitNumber - 1); c++) //bubble sorting, overkill for the sample size, but I prefer having it for sorting the order of characters based on their CT (not much testing yet)
                 {
@@ -276,6 +302,9 @@ public class CellGrid : MonoBehaviour
 
             } //end of sorting
 
+         //if sort
+
+            
             Unit AT = UnitOrderCT[0];
             ///Active Turn
 			ActiveTurn(AT);

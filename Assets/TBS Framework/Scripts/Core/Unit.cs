@@ -122,15 +122,18 @@ public abstract class Unit : MonoBehaviour
         MovementPoints = TotalMovementPoints;
         ActionPoints = TotalActionPoints;
 
+        SetState(new UnitStateNormal(this));
         SetState(new UnitStateMarkedAsFriendly(this));
     }
 
     public virtual void OnTurnStart2()
     {
+        
         MovementPoints = 0;
         ActionPoints = 0;
+        
 
-        SetState(new UnitStateMarkedAsFriendly(this));
+        SetState(new UnitStateMarkedAsFinished(this));
     }
 
     public virtual void AddCT()
@@ -179,6 +182,9 @@ public abstract class Unit : MonoBehaviour
             UnitDeselected.Invoke(this, new EventArgs());
     }
 
+
+
+
     /// <summary>
     /// Method indicates if it is possible to attack unit given as parameter, from cell given as second parameter.
     /// </summary>
@@ -205,11 +211,13 @@ public abstract class Unit : MonoBehaviour
         ActionPoints--;
         other.Defend(this, AttackFactor);
 
+        /*
         if (ActionPoints == 0)
         {
             SetState(new UnitStateMarkedAsFinished(this));
             MovementPoints = 0;
-        }  
+        }
+        */ 
     }
     /// <summary>
     /// Attacking unit calls Defend method on defending unit. 
@@ -240,6 +248,7 @@ public abstract class Unit : MonoBehaviour
             return;
 
         MovementPoints -= totalMovementCost;
+        MovementPoints = 0; //test 0
 
         Cell.IsTaken = false;
         Cell = destinationCell;
@@ -384,15 +393,15 @@ public class MovementEventArgs : EventArgs
 }
 public class AttackEventArgs : EventArgs
 {
-    public Unit Attacker;
-    public Unit Defender;
+    public Unit Actor;
+    public Unit Aundience;
 
     public int Damage;
 
     public AttackEventArgs(Unit attacker, Unit defender, int damage)
     {
-        Attacker = attacker;
-        Defender = defender;
+        Actor = attacker;
+        Aundience = defender;
 
         Damage = damage;
     }
