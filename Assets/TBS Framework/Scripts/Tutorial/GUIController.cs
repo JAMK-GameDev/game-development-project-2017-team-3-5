@@ -3,7 +3,8 @@
 public class GUIController : MonoBehaviour
 {
     public CellGrid CellGrid;
-	
+    CellGridStateUnitSelected UnitSelected;
+
     void Start()
     {
         Debug.Log("Press 'n' to end turn");
@@ -24,36 +25,36 @@ public class GUIController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-
-            Act();
-            Debug.Log("Press 'a' to start act");
-        }
-
-    }
-
-    void Act ()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-
+            Debug.Log("Attack");
+            
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
+
+            Debug.Log("Magic");
 
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
 
+            Debug.Log("Reality Break");
+
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
+            Debug.Log("Act mode cancelled");
             return;
+
         }
 
     }
+
+   
+
+
 
 
 }

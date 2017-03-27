@@ -9,6 +9,9 @@ using System.Collections;
 /// </summary>
 public abstract class Unit : MonoBehaviour
 {
+    public CellGrid CellGrid;
+
+
     /// <summary>
     /// UnitClicked event is invoked when user clicks the unit. It requires a collider on the unit game object to work.
     /// </summary>
@@ -113,6 +116,10 @@ public abstract class Unit : MonoBehaviour
         if (UnitDehighlighted != null)
             UnitDehighlighted.Invoke(this, new EventArgs());
     }
+
+    
+
+
 
     /// <summary>
     /// Method is called at the start of each turn.
