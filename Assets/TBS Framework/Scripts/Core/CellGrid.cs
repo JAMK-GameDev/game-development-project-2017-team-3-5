@@ -116,8 +116,10 @@ public class CellGrid : MonoBehaviour
 
     private void OnUnitClicked(object sender, EventArgs e)
     {
-        if(click) CellGridState.OnUnitClicked(sender as Unit);
+        if(click1) CellGridState.OnUnitClicked(sender as Unit);
     }
+
+
     private void OnUnitDestroyed(object sender, AttackEventArgs e)
     {
         Units.Remove(sender as Unit);
@@ -165,7 +167,7 @@ public class CellGrid : MonoBehaviour
         //Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
     }
 
-    bool click = false;
+    bool click1= false;
     /// <summary>
     /// Method makes turn transitions. It is called by player at the end of his turn.
     /// </summary>
@@ -202,15 +204,45 @@ public class CellGrid : MonoBehaviour
         UnitOrderCT = Units.FindAll(c => c.ChargeTime >= 100); //Makes a list of units with full CT
         UnitNumber = UnitOrderCT.Count();
         ClockTick();
-        click = false;
+        click1 = false;
 
         //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
         //Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);     
     }
 
-    public void CanClick()
+    public void AttackButton()
     {
-        click = true;
+
+        
+        CellGridState.AttackSelection();
+        //  CanClick(1);
+
+
+    }
+
+    public void Skill1Button()
+    {
+
+
+       // CanClick(2);
+
+
+    }
+
+    public void Skill2Button()
+    {
+
+
+       // CanClick(3);
+
+
+    }
+
+
+
+    public void CanClick(/*int a*/)
+    {
+        click1= true;
         CellGridState.OnUnitClicked(CurrentUnit);
     }
 

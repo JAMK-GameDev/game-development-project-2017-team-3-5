@@ -190,6 +190,32 @@ public abstract class Unit : MonoBehaviour
     }
 
 
+  //skill
+    public virtual bool IsUnitTargetable(Unit other, Cell sourceCell)
+    {
+        if (sourceCell.GetDistance(other.Cell) <= 3)
+            return true;
+
+        return false;
+    }
+    
+
+
+    public virtual void DealSkillDmg(Unit other)
+    {
+        if (isMoving)
+            return;
+        if (ActionPoints == 0)
+            return;
+        if (!IsUnitTargetable(other, Cell))
+            return;
+
+        MarkAsAttacking(other);
+        ActionPoints--;
+        other.Skill1(this, 15);
+
+        
+    }
 
 
     /// <summary>
@@ -218,18 +244,32 @@ public abstract class Unit : MonoBehaviour
         ActionPoints--;
         other.Defend(this, AttackFactor);
 
-        /*
-        if (ActionPoints == 0)
-        {
-            SetState(new UnitStateMarkedAsFinished(this));
-            MovementPoints = 0;
-        }
-        */ 
+        
+        
     }
+
+
+
     /// <summary>
     /// Attacking unit calls Defend method on defending unit. 
     /// </summary>
     protected virtual void Defend(Unit other, int damage)
+    {
+        MarkAsDefending(other);
+        HitPoints -= Mathf.Clamp(damage - DefenceFactor, 1, damage);  //Damage is calculated by subtracting attack factor of attacker and defence factor of defender. If result is below 1, it is set to 1.
+                                                                      //This behaviour can be overridden in derived classes.
+        if (UnitAttacked != null)
+            UnitAttacked.Invoke(this, new AttackEventArgs(other, this, damage));
+
+        if (HitPoints <= 0)
+        {
+            if (UnitDestroyed != null)
+                UnitDestroyed.Invoke(this, new AttackEventArgs(other, this, damage));
+            OnDestroyed();
+        }
+    }
+
+    protected virtual void Skill1(Unit other, int damage)
     {
         MarkAsDefending(other);
         HitPoints -= Mathf.Clamp(damage - DefenceFactor, 1, damage);  //Damage is calculated by subtracting attack factor of attacker and defence factor of defender. If result is below 1, it is set to 1.
@@ -254,8 +294,8 @@ public abstract class Unit : MonoBehaviour
         if (MovementPoints < totalMovementCost)
             return;
 
-        MovementPoints -= totalMovementCost;
-        MovementPoints = 0; //test 0
+        //MovementPoints -= totalMovementCost;
+        MovementPoints = 0; //makes it so you can only move once per turn
 
         Cell.IsTaken = false;
         Cell = destinationCell;
