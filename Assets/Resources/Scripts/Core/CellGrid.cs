@@ -245,6 +245,7 @@ public class CellGrid : MonoBehaviour
 		UnitNumber = UnitOrderCT.Count();
 		ClockTick();
 		canMove = false;
+		canAttack = false;
 
 		//Needs to be commented, otherwise sudden team attack ;D
         //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
