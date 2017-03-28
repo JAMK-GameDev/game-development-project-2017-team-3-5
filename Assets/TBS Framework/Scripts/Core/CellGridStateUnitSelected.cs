@@ -18,7 +18,7 @@ class CellGridStateUnitSelected : CellGridState
 
     public override void OnCellClicked(Cell cell)
     {
-        if (_unit.isMoving)
+		if (_unit.isMoving || !_cellGrid.click)
             return;
         if(cell.IsTaken)
         {
@@ -36,10 +36,12 @@ class CellGridStateUnitSelected : CellGridState
             _unit.Move(cell,path);
             _cellGrid.CellGridState = new CellGridStateUnitSelected(_cellGrid, _unit);
         }
+		_unit.MovementPoints = 0;
+		//_cellGrid.click = false;
     }
     public override void OnUnitClicked(Unit unit)
     {
-        if (unit.Equals(_unit) || unit.isMoving)
+		if (unit.Equals(_unit) || unit.isMoving || !_cellGrid.attack)
             return;
 
         if (_unitsInRange.Contains(unit) && _unit.ActionPoints > 0)

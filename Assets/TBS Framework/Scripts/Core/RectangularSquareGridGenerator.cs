@@ -29,7 +29,7 @@ public class RectangularSquareGridGenerator : ICellGridGenerator
                 var square = Instantiate(SquarePrefab);
                 var squareSize = square.GetComponent<Cell>().GetCellDimensions();
 
-                square.transform.position = new Vector3(i*squareSize.x,j*squareSize.y,0);
+                square.transform.position = new Vector3(i*squareSize.x,0, j * squareSize.y);
                 square.GetComponent<Cell>().OffsetCoord = new Vector2(i,j);
                 square.GetComponent<Cell>().MovementCost = 1;
                 ret.Add(square.GetComponent<Cell>());

@@ -3,6 +3,9 @@
 public class SampleUnit : Unit
 {
     public Color LeadingColor;
+    public Color FriendlyColor = Color.blue;
+    public Color EnemyColor = Color.red;
+    public Color SelectedColor = Color.green;
     public override void Initialize()
     {
         base.Initialize();
@@ -27,17 +30,17 @@ public class SampleUnit : Unit
 
     public override void MarkAsFriendly()
     {
-        GetComponent<Renderer>().material.color = LeadingColor + new Color(0.8f, 1, 0.8f);
+        GetComponent<Renderer>().material.color = LeadingColor + FriendlyColor;
     }
 
     public override void MarkAsReachableEnemy()
     {
-        GetComponent<Renderer>().material.color = LeadingColor + Color.red ;
+        GetComponent<Renderer>().material.color = LeadingColor + EnemyColor;
     }
 
     public override void MarkAsSelected()
     {
-        GetComponent<Renderer>().material.color = LeadingColor + Color.green;
+        GetComponent<Renderer>().material.color = LeadingColor + SelectedColor;
     }
 
     public override void UnMark()

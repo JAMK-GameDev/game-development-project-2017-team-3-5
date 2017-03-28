@@ -41,9 +41,9 @@ public abstract class Hexagon : Cell
         }
     }
 
-    protected Vector2 CubeToOffsetCoords(Vector3 cubeCoords)
+    protected Vector3 CubeToOffsetCoords(Vector3 cubeCoords)
     {
-        Vector2 ret = new Vector2();
+        Vector3 ret = new Vector3();
 
         switch (HexGridType)
         {
@@ -64,8 +64,10 @@ public abstract class Hexagon : Cell
     }
 
     protected static readonly Vector3[] _directions =  {
-        new Vector3(+1, -1, 0), new Vector3(+1, 0, -1), new Vector3(0, +1, -1),
-        new Vector3(-1, +1, 0), new Vector3(-1, 0, +1), new Vector3(0, -1, +1)};
+        new Vector3(+1, -1, 0), new Vector3(+1, 0, -1),
+        new Vector3(0, +1, -1), new Vector3(-1, +1, 0),
+        new Vector3(-1, 0, +1), new Vector3(0, -1, +1)
+    };
 
     public override int GetDistance(Cell other)
     {

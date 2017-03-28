@@ -7,7 +7,7 @@ public abstract class Cell : MonoBehaviour, IGraphNode
     [HideInInspector]
     [SerializeField]
     private Vector2 _offsetCoord;
-    public Vector2 OffsetCoord { get { return _offsetCoord; } set { _offsetCoord = value; } }
+    public Vector3 OffsetCoord { get { return _offsetCoord; } set { _offsetCoord = value; } }
 
     /// <summary>
     /// Indicates if something is occupying the cell.

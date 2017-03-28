@@ -3,9 +3,11 @@ using UnityEngine;
 
 public abstract class Square : Cell
 {
-    protected static readonly Vector2[] _directions =
+    protected static readonly Vector3[] _directions =
     {
-        new Vector2(1, 0), new Vector2(-1, 0), new Vector2(0, 1), new Vector2(0, -1)
+        new Vector3(1, 0, 0), new Vector3(-1, 0, 0),
+        new Vector3(0, 1, 0), new Vector3(0, -1, 0),
+        new Vector3(0, 0, 1), new Vector3(0, 0, -1)
     };
     
     public override int GetDistance(Cell other)

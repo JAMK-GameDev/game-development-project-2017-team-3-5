@@ -43,6 +43,8 @@ public class CellGrid : MonoBehaviour
     public List<Cell> Cells { get; private set; }
     public List<Unit> Units { get; private set; }
 
+	public bool click = false, attack = false;
+
     void Start()
     {
         Players = new List<Player>();
@@ -74,6 +76,7 @@ public class CellGrid : MonoBehaviour
             cell.CellDehighlighted += OnCellDehighlighted;
         }
              
+        //Move?
         var unitGenerator = GetComponent<IUnitGenerator>();
         if (unitGenerator != null)
         {
@@ -99,12 +102,14 @@ public class CellGrid : MonoBehaviour
         CellGridState.OnCellSelected(sender as Cell);
     } 
     private void OnCellClicked(object sender, EventArgs e)
-    {
+	{
+		if(click)
         CellGridState.OnCellClicked(sender as Cell);
     }
 
     private void OnUnitClicked(object sender, EventArgs e)
     {
+		if(click)
         CellGridState.OnUnitClicked(sender as Unit);
     }
     private void OnUnitDestroyed(object sender, AttackEventArgs e)
@@ -152,6 +157,11 @@ public class CellGrid : MonoBehaviour
             TurnEnded.Invoke(this, new EventArgs());
 
         Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
-        Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);     
+        Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
+		click = false;
     }
+	public void PlayerCanClick(){
+		click = true;
+		CellGridState.OnUnitClicked (Units.Find (u => u.AttackFactor.Equals (1)));
+	}
 }

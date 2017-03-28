@@ -2,6 +2,10 @@
 
 class SampleSquare : Square
 {
+    public Color PathCellColor = Color.green;
+    public Color ReachableCellColor = Color.yellow;
+    public Color DefaultCellColor = Color.white;
+
     public override Vector3 GetCellDimensions()
     {
         return GetComponent<Renderer>().bounds.size;
@@ -14,17 +18,17 @@ class SampleSquare : Square
 
     public override void MarkAsPath()
     {
-        GetComponent<Renderer>().material.color = Color.green;
+        GetComponent<Renderer>().material.color = PathCellColor;
     }
 
     public override void MarkAsReachable()
     {
-        GetComponent<Renderer>().material.color = Color.yellow;
+        GetComponent<Renderer>().material.color = ReachableCellColor;
     }
 
     public override void UnMark()
     {
-        GetComponent<Renderer>().material.color = Color.white;
+        GetComponent<Renderer>().material.color = DefaultCellColor;
     }
 }
 

@@ -111,8 +111,15 @@ public abstract class Unit : MonoBehaviour//Player
     /// </summary>
     public virtual void OnTurnStart()
     {
-        MovementPoints = TotalMovementPoints;
-        ActionPoints = TotalActionPoints;
+		//TODO Here maybe the most important turn things... YES!
+		if (AttackFactor.Equals(1)) {
+			MovementPoints = TotalMovementPoints;
+			ActionPoints = TotalActionPoints;
+		} else {
+			//TODO CT++
+			MovementPoints = 0;
+			ActionPoints = 0;
+		}
 
         SetState(new UnitStateMarkedAsFriendly(this));
     }
@@ -140,11 +147,12 @@ public abstract class Unit : MonoBehaviour//Player
     /// <summary>
     /// Method is called when unit is selected.
     /// </summary>
-    public virtual void OnUnitSelected()
-    {
-        SetState(new UnitStateMarkedAsSelected(this));
-        if (UnitSelected != null)
-            UnitSelected.Invoke(this, new EventArgs());
+    public virtual void OnUnitSelected() {
+		if (this.AttackFactor.Equals (1)) {
+			SetState (new UnitStateMarkedAsSelected (this));
+			if (UnitSelected != null)
+				UnitSelected.Invoke (this, new EventArgs ());
+		}
     }
     /// <summary>
     /// Method is called when unit is deselected.
