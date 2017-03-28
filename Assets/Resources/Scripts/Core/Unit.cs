@@ -9,6 +9,21 @@ using System.Collections;
 /// </summary>
 public abstract class Unit : MonoBehaviour
 {
+    float Totalvalue;
+    float TicksPerSecond, Time;
+    
+    enum DamageTypes
+    {
+        Damage, MagicDamage, StaticDamage, Heal, Buff, Debuff
+    }
+    enum CostTypes
+    {
+        Hitpoints, ImaginationPoints, ChargingTime, RealityBreak
+    }
+    DamageTypes Type;
+    CostTypes Cost;
+    //Type = DamageTypes.Heal;
+    
     /// <summary>
     /// UnitClicked event is invoked when user clicks the unit. It requires a collider on the unit game object to work.
     /// </summary>
@@ -31,6 +46,7 @@ public abstract class Unit : MonoBehaviour
     public void SetState(UnitState state)
     {
         UnitState.MakeTransition(state);
+        
     }
 	//Status effects
     public List<Buff> Buffs { get; private set; }
@@ -173,7 +189,7 @@ public abstract class Unit : MonoBehaviour
     /// <summary>
     /// Method indicates if it is possible to attack unit given as parameter, from cell given as second parameter.
     /// </summary>
-    public virtual bool IsUnitAttackable(Unit other, Cell sourceCell)
+    public virtual bool IsUnitAttackable(Unit other, Cell sourceCell, int Range)
     {
         if (sourceCell.GetDistance(other.Cell) <= AttackRange)
             return true;
@@ -189,8 +205,9 @@ public abstract class Unit : MonoBehaviour
             return;
         if (ActionPoints == 0)
             return;
-        if (!IsUnitAttackable(other, Cell))
-            return;
+       // if (!IsUnitAttackable(other, Cell))
+       //     return;
+       //^^add back later
 
         MarkAsAttacking(other);
         ActionPoints--;

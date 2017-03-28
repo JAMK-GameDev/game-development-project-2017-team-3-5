@@ -54,6 +54,24 @@ class CellGridStateUnitSelected : CellGridState
         }
             
     }
+
+    public override void AttackSelector()
+    {
+        foreach (var currentUnit in _cellGrid.Units)
+        {
+            if (currentUnit.PlayerNumber.Equals(_unit.PlayerNumber))
+                continue;
+            int i = 1;
+            if (_unit.IsUnitAttackable(currentUnit, _unit.Cell, i))
+            {
+                currentUnit.SetState(new UnitStateMarkedAsReachableEnemy(currentUnit));
+                _unitsInRange.Add(currentUnit);
+            }
+        }
+    }
+
+
+
     public override void OnCellDeselected(Cell cell)
     {
         base.OnCellDeselected(cell);
@@ -99,6 +117,7 @@ class CellGridStateUnitSelected : CellGridState
 
         if (_unit.ActionPoints <= 0) return;
 
+        /*
         foreach (var currentUnit in _cellGrid.Units)
         {
             if (currentUnit.PlayerNumber.Equals(_unit.PlayerNumber))
@@ -109,7 +128,7 @@ class CellGridStateUnitSelected : CellGridState
                 currentUnit.SetState(new UnitStateMarkedAsReachableEnemy(currentUnit));
                 _unitsInRange.Add(currentUnit);
             }
-        }
+        }*/
         
         if (_unitCell.GetNeighbours(_cellGrid.Cells).FindAll(c => c.MovementCost <= _unit.MovementPoints).Count == 0 
             && _unitsInRange.Count == 0)

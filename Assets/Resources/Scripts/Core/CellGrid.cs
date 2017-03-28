@@ -20,7 +20,7 @@ public class CellGrid : MonoBehaviour
 	public List<Unit> UnitOrderCT { get; private set; }
 	public int UnitNumber { get; private set; }
 	public bool TurnIsActive { get; private set; }
-	public bool canMove = false, canAttack = false;
+	public bool canMove = false;
     
     private CellGridState _cellGridState;//The grid delegates some of its behaviours to cellGridState object.
     public CellGridState CellGridState
@@ -126,7 +126,7 @@ public class CellGrid : MonoBehaviour
     private void OnUnitClicked(object sender, EventArgs e)
 	{
 		//Can only attack when is units turn and player selected action
-		if(canAttack) CellGridState.OnUnitClicked(sender as Unit);
+		CellGridState.OnUnitClicked(sender as Unit);
     }
     private void OnUnitDestroyed(object sender, AttackEventArgs e)
     {
@@ -245,7 +245,6 @@ public class CellGrid : MonoBehaviour
 		UnitNumber = UnitOrderCT.Count();
 		ClockTick();
 		canMove = false;
-		canAttack = false;
 
 		//Needs to be commented, otherwise sudden team attack ;D
         //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
@@ -258,8 +257,7 @@ public class CellGrid : MonoBehaviour
 		CellGridState.OnUnitClicked(CurrentUnit);
 	}
 	public void CanAttack(){
-		canAttack = true;
-		//Selects current unit
-		CellGridState.OnUnitClicked(CurrentUnit);
-	}
+        CellGridState.AttackSelector();
+
+    }
 }
