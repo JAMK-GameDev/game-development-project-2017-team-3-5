@@ -11,7 +11,16 @@ public class CellGrid : MonoBehaviour
 {
     public event EventHandler GameStarted;
     public event EventHandler GameEnded;
-    public event EventHandler TurnEnded;
+	public event EventHandler TurnEnded;
+	//Own events
+	public event EventHandler ClockTickActive;
+	public event EventHandler ActiveTurnStart;
+
+	public Unit CurrentUnit { get; private set; }
+	public List<Unit> UnitOrderCT { get; private set; }
+	public int UnitNumber { get; private set; }
+	public bool TurnIsActive { get; private set; }
+	bool canMove = false, canAttack = false;
     
     private CellGridState _cellGridState;//The grid delegates some of its behaviours to cellGridState object.
     public CellGridState CellGridState
@@ -78,11 +87,21 @@ public class CellGrid : MonoBehaviour
         if (unitGenerator != null)
         {
             Units = unitGenerator.SpawnUnits(Cells);
+			//Gives units needed values, unitID us unique number and needed in sorting in ClockTick();
+			for (int i = 0; i < Units.Count; i++) {
+				Units[i].UnitID = i;
+				if (Units [i].Speed == 0)
+					Units [i].Speed = 5;
+				Units[i].UnitClicked += OnUnitClicked;
+				Units[i].UnitDestroyed += OnUnitDestroyed;
+			}
+			/*
             foreach (var unit in Units)
             {
+				unit.UnitID = 
                 unit.UnitClicked += OnUnitClicked;
                 unit.UnitDestroyed += OnUnitDestroyed;
-            }
+            }*/
         }
         else
             Debug.LogError("No IUnitGenerator script attached to cell grid");
@@ -100,12 +119,14 @@ public class CellGrid : MonoBehaviour
     } 
     private void OnCellClicked(object sender, EventArgs e)
     {
-        CellGridState.OnCellClicked(sender as Cell);
+		//Can only move when is units turn and player selected move
+		if(canMove) CellGridState.OnCellClicked(sender as Cell);
     }
 
     private void OnUnitClicked(object sender, EventArgs e)
-    {
-        CellGridState.OnUnitClicked(sender as Unit);
+	{
+		//Can only attack when is units turn and player selected action
+		if(canAttack) CellGridState.OnUnitClicked(sender as Unit);
     }
     private void OnUnitDestroyed(object sender, AttackEventArgs e)
     {
@@ -126,32 +147,118 @@ public class CellGrid : MonoBehaviour
         if(GameStarted != null)
             GameStarted.Invoke(this, new EventArgs());
 
-        Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
-        Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
+		UnitNumber = 0;
+		ClockTick();
+        //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
+        //Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
     }
+	public void ActiveTurn(Unit a){
+		print ("In Active turn");
+		if (ActiveTurnStart != null) ActiveTurnStart.Invoke(this, new EventArgs());
+		
+		TurnIsActive = true; //NOTE: Not in use right now...
+		CurrentUnit = a;
+		CurrentPlayerNumber = a.PlayerNumber;
+		Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart2(); });
+		a.OnTurnStart();
+		Players.Find(p => p.PlayerNumber.Equals(a.PlayerNumber)).Play(this);
+		print ("Left Active turn");
+	}
+	public void ClockTick() {
+		if (ClockTickActive != null)
+			ClockTickActive.Invoke (this, new EventArgs ());
+		print ("Inside CT adds next");
+		while (UnitNumber == 0) {
+			TurnIsActive = false;
+			Units.ForEach (c => { c.AddCT(); }); //Ct gets added to each unit
+			UnitOrderCT = Units.FindAll (c => c.ChargeTime >= 100); //Makes a list of units with full CT
+			UnitNumber = UnitOrderCT.Count ();
+		}
+
+		//Sorting done to determine order of characters that have their CT 100
+		Unit swap;
+		print ("Inside Sorter next");
+		if (UnitNumber > 1) {
+			print ("Inside Sorter");
+			//checks if there is more then one character getting a turn, if so sorts
+			for (int c = 0; c < (UnitNumber - 1); c++) //bubble sorting, overkill for the sample size, but I prefer having it for sorting the order of characters based on their CT (not much testing yet)
+			{
+				for (int d = 0; d < UnitNumber - c - 1; d++) //aka it sorts the characters in the order of how much ct they had
+				{
+					if (UnitOrderCT[d].ChargeTime > UnitOrderCT[d + 1].ChargeTime)
+					{
+						swap = UnitOrderCT[d];
+						UnitOrderCT[d] = UnitOrderCT[d + 1];
+						UnitOrderCT[d + 1] = swap;
+					}
+				} //end CT sort
+			}
+			print ("Did Sorter1");
+			//this sorts units with equal CT in order of their UnitID
+			for (int c = 0; c < (UnitNumber - 1); c++) //bubble sorting, overkill for the sample size, but I prefer having it for sorting the order of characters based on their CT (not much testing yet)
+			{
+				for (int d = 0; d < UnitNumber - c - 1; d++) //aka it sorts the characters in the order of how much ct they had
+				{
+					if (UnitOrderCT[d].ChargeTime == UnitOrderCT[d + 1].ChargeTime && UnitOrderCT[d].UnitID > UnitOrderCT[d + 1].UnitID)
+					{
+						swap = UnitOrderCT[d];
+						UnitOrderCT[d] = UnitOrderCT[d + 1];
+						UnitOrderCT[d + 1] = swap;
+					}
+				} //end ID sort
+			} //end of sorting
+			print ("Did Sorter2 and leaving sort");
+		}
+		Unit AT = UnitOrderCT[0];
+		///Active Turn
+		ActiveTurn(AT);
+	}
     /// <summary>
     /// Method makes turn transitions. It is called by player at the end of his turn.
     /// </summary>
     public void EndTurn()
     {
+		/*
         if (Units.Select(u => u.PlayerNumber).Distinct().Count() == 1)
         {
             return;
         }
+        */
         CellGridState = new CellGridStateTurnChanging(this);
 
         Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnEnd(); });
-
+		/*
         CurrentPlayerNumber = (CurrentPlayerNumber + 1) % NumberOfPlayers;
         while (Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).Count == 0)
         {
             CurrentPlayerNumber = (CurrentPlayerNumber + 1)%NumberOfPlayers;
         }//Skipping players that are defeated.
-
+		*/
         if (TurnEnded != null)
             TurnEnded.Invoke(this, new EventArgs());
 
-        Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
-        Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);     
-    }
+		CurrentUnit.ChargeTime = 0;
+		if (CurrentUnit.ActionPoints != 0) { CurrentUnit.ChargeTime += 20; }
+		if (CurrentUnit.MovementPoints != 0) { CurrentUnit.ChargeTime += 20; }
+
+		UnitOrderCT = Units.FindAll(c => c.ChargeTime >= 100); //Makes a list of units with full CT
+		UnitNumber = UnitOrderCT.Count();
+		ClockTick();
+		canMove = false;
+
+		//Needs to be commented, otherwise sudden team attack ;D
+        //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
+        //Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);     
+
+	}
+	public void CanMove(){
+		canMove = true;
+		//Selects current unit
+		CellGridState.OnUnitClicked(CurrentUnit);
+	}
+	public void CanAttack(){
+		canAttack = true;
+		//Selects current unit
+		CellGridState.OnUnitClicked(CurrentUnit);
+	}
 }

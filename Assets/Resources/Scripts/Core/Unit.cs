@@ -32,9 +32,10 @@ public abstract class Unit : MonoBehaviour
     {
         UnitState.MakeTransition(state);
     }
-
+	//Status effects
     public List<Buff> Buffs { get; private set; }
 
+	//Total values
     public int TotalHitPoints { get; private set; }
     protected int TotalMovementPoints;
     protected int TotalActionPoints;
@@ -44,10 +45,17 @@ public abstract class Unit : MonoBehaviour
     /// </summary>
     public Cell Cell { get; set; }
 
+	//Values
     public int HitPoints;
     public int AttackRange;
     public int AttackFactor;
     public int DefenceFactor;
+	public int RealityBreak;
+	public int ChargeTime;
+
+	//Attributes
+	public int UnitID; //Allows us to sort units...
+	public int Speed = 5;
     /// <summary>
     /// Determines how far on the grid the unit can move.
     /// </summary>
@@ -108,11 +116,20 @@ public abstract class Unit : MonoBehaviour
     /// </summary>
     public virtual void OnTurnStart()
     {
-        MovementPoints = TotalMovementPoints;
-        ActionPoints = TotalActionPoints;
-
-        SetState(new UnitStateMarkedAsFriendly(this));
+		MovementPoints = TotalMovementPoints;
+		ActionPoints = TotalActionPoints;
+		SetState(new UnitStateNormal(this));
+		SetState (new UnitStateMarkedAsFriendly (this));
     }
+	public virtual void OnTurnStart2()
+	{
+		MovementPoints = 0;
+		ActionPoints = 0;
+
+		SetState(new UnitStateMarkedAsFinished(this));
+	}
+	//Add ct to unit
+	public virtual void AddCT() { ChargeTime += Speed; }
     /// <summary>
     /// Method is called at the end of each turn.
     /// </summary>
@@ -213,7 +230,8 @@ public abstract class Unit : MonoBehaviour
         if (MovementPoints < totalMovementCost)
             return;
 
-        MovementPoints -= totalMovementCost;
+        //MovementPoints -= totalMovementCost;
+		MovementPoints = 0;
 
         Cell.IsTaken = false;
         Cell = destinationCell;
@@ -255,7 +273,9 @@ public abstract class Unit : MonoBehaviour
     /// Method indicates if unit is capable of moving through cell given as parameter.
     /// </summary>
     public virtual bool IsCellTraversable(Cell cell)
-    {
+	{
+		//TODO optional, units can move through allies
+		//return true; //Need to check who is in that cell...
         return !cell.IsTaken;
     }
     /// <summary>
