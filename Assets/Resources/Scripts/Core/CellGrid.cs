@@ -20,7 +20,7 @@ public class CellGrid : MonoBehaviour
 	public List<Unit> UnitOrderCT { get; private set; }
 	public int UnitNumber { get; private set; }
 	public bool TurnIsActive { get; private set; }
-	bool canMove = false, canAttack = false;
+	public bool canMove = false, canAttack = false;
     
     private CellGridState _cellGridState;//The grid delegates some of its behaviours to cellGridState object.
     public CellGridState CellGridState
