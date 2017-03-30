@@ -44,7 +44,7 @@ class CellGridStateUnitSelected : CellGridState
 
         if (_unitsInRange.Contains(unit) && _unit.ActionPoints > 0)
         {
-            _unit.DealDamage(unit);
+            _unit.DoSkill(unit);
             _cellGrid.CellGridState = new CellGridStateUnitSelected(_cellGrid, _unit);
         }
 
@@ -61,8 +61,8 @@ class CellGridStateUnitSelected : CellGridState
         {
             if (currentUnit.PlayerNumber.Equals(_unit.PlayerNumber))
                 continue;
-            int i = 1;
-            if (_unit.IsUnitAttackable(currentUnit, _unit.Cell, i))
+            
+            if (_unit.IsUnitAttackable(currentUnit, _unit.Cell, currentUnit.CurrentSkill.SkillRange))
             {
                 currentUnit.SetState(new UnitStateMarkedAsReachableEnemy(currentUnit));
                 _unitsInRange.Add(currentUnit);
