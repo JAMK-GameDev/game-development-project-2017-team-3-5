@@ -60,6 +60,10 @@ public abstract class Cell : MonoBehaviour, IGraphNode
     ///  Method marks the cell to give user an indication, that selected unit can reach it.
     /// </summary>
     public abstract void MarkAsReachable();
+    
+    //If cell is targeted by skill.
+    public abstract void MarkAsTarget();
+    
     /// <summary>
     /// Method marks the cell as a part of a path.
     /// </summary>

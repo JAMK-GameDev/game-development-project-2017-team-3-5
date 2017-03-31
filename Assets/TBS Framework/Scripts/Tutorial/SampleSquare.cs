@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 class SampleSquare : Square
 {
@@ -17,9 +18,15 @@ class SampleSquare : Square
         GetComponent<Renderer>().material.color = Color.green;
     }
 
+
     public override void MarkAsReachable()
     {
         GetComponent<Renderer>().material.color = Color.yellow;
+    }
+
+    public override void MarkAsTarget()
+    {
+        GetComponent<Renderer>().material.color = Color.gray;
     }
 
     public override void UnMark()

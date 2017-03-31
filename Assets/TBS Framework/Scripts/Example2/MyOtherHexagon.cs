@@ -14,6 +14,10 @@ public class MyOtherHexagon : Hexagon
     {
         SetColor(new Color(1, 0.92f, 0.016f, 1));
     }
+    public override void MarkAsTarget()
+    {
+        GetComponent<Renderer>().material.color = Color.cyan;
+    }
     public override void MarkAsPath()
     {
         SetColor(new Color(0,1,0,1));

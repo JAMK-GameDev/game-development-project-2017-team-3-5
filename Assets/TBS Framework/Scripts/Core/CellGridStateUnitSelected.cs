@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 class CellGridStateUnitSelected : CellGridState
 {
     private Unit _unit;
     private List<Cell> _pathsInRange;
+    private List<Cell> _cellsInRange;
     private List<Unit> _unitsInRange;
 
     private Cell _unitCell;
@@ -14,6 +16,7 @@ class CellGridStateUnitSelected : CellGridState
         _unit = unit;
         _pathsInRange = new List<Cell>();
         _unitsInRange = new List<Unit>();
+        _cellsInRange  = new List<Cell>();
     }
 
     public override void OnCellClicked(Cell cell)
@@ -25,8 +28,14 @@ class CellGridStateUnitSelected : CellGridState
             _cellGrid.CellGridState = new CellGridStateWaitingForInput(_cellGrid);
             return;
         }
-            
-        if(!_pathsInRange.Contains(cell))
+
+        if (_cellsInRange.Contains(cell) && _unit.ActionPoints > 0)
+        {
+            _unit.DoSkill(cell.GetComponent<GameObject>());
+            _cellGrid.CellGridState = new CellGridStateUnitSelected(_cellGrid, _unit);
+        }
+
+        if (!_pathsInRange.Contains(cell))
         {
             _cellGrid.CellGridState = new CellGridStateWaitingForInput(_cellGrid);
         }
@@ -44,7 +53,7 @@ class CellGridStateUnitSelected : CellGridState
 
         if (_unitsInRange.Contains(unit) && _unit.ActionPoints > 0)
         {
-            _unit.DoSkill(unit);
+            _unit.DoSkill(unit.GetComponent<GameObject>());
             _cellGrid.CellGridState = new CellGridStateUnitSelected(_cellGrid, _unit);
         }
 
@@ -55,21 +64,87 @@ class CellGridStateUnitSelected : CellGridState
             
     }
 
-    public override void AttackSelector()
+    public override void AttackSelector(Unit i)
     {
         foreach (var currentUnit in _cellGrid.Units)
         {
             if (currentUnit.PlayerNumber.Equals(_unit.PlayerNumber))
                 continue;
             
-            if (_unit.IsUnitAttackable(currentUnit, _unit.Cell, currentUnit.CurrentSkill.SkillRange))
+            if (_unit.IsCellAttackable(currentUnit.Cell, _unit.Cell, i.CurrentSkill.SkillRange))
             {
                 currentUnit.SetState(new UnitStateMarkedAsReachableEnemy(currentUnit));
+                
                 _unitsInRange.Add(currentUnit);
             }
         }
     }
 
+
+    public override void OnCellAttack()
+    {
+        foreach (var currentCell in _cellGrid.Cells)
+        {
+            if (_unit.IsCellAttackable(currentCell, _unit.Cell, _unit.CurrentSkill.SkillRange))
+            {
+                currentCell.MarkAsTarget();
+                _cellsInRange.Add(currentCell);
+                if (currentCell.IsTaken) {
+                    Unit u = _cellGrid.Units.Find(unit => unit.Cell == currentCell);
+                    u.SetState(new UnitStateMarkedAsReachableEnemy(u));
+                }
+            }
+        }
+
+        //We have AOE
+        if (_unit.CurrentSkill.AOE > 0)
+        {
+
+        }
+        else
+        {
+
+        }
+
+
+
+
+        
+        
+
+        _pathsInRange = _unit.GetAvailableDestinations(_cellGrid.Cells);
+        var cellsNotInRange = _cellGrid.Cells.Except(_pathsInRange);
+
+        foreach (var cell in cellsNotInRange)
+        {
+            cell.UnMark();
+        }
+        foreach (var cell in _pathsInRange)
+        {
+            cell.MarkAsReachable();
+        }
+
+        if (_unit.ActionPoints <= 0) return;
+
+        /*
+        foreach (var currentUnit in _cellGrid.Units)
+        {
+            if (currentUnit.PlayerNumber.Equals(_unit.PlayerNumber))
+                continue;
+        
+            if (_unit.IsUnitAttackable(currentUnit,_unit.Cell))
+            {
+                currentUnit.SetState(new UnitStateMarkedAsReachableEnemy(currentUnit));
+                _unitsInRange.Add(currentUnit);
+            }
+        }*/
+
+        if (_unitCell.GetNeighbours(_cellGrid.Cells).FindAll(c => c.MovementCost <= _unit.MovementPoints).Count == 0
+            && _unitsInRange.Count == 0)
+            _unit.SetState(new UnitStateMarkedAsFinished(_unit));
+
+
+    }
 
 
     public override void OnCellDeselected(Cell cell)

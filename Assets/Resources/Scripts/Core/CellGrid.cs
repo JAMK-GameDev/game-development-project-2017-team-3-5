@@ -134,12 +134,27 @@ public class CellGrid : MonoBehaviour
     }
     private void OnCellHighlighted(object sender, EventArgs e)
     {
+        //TODO: Käy läpi kaikki naapurit...
+        /*(sender as Cell).GetNeighbours(Cells).ForEach(each => {
+            //Värjätään kaikki cellit, joihin isketään AOE:lla
+        });*/
         CellGridState.OnCellSelected(sender as Cell);
     } 
     private void OnCellClicked(object sender, EventArgs e)
     {
 		//Can only move when is units turn and player selected move
-		if(canMove) CellGridState.OnCellClicked(sender as Cell);
+		/*if (canMove) CellGridState.OnCellClicked(sender as Cell);
+        else
+        {*/
+        if (CellGridState is CellGridStateUnitSelected)
+        {
+            //TODO: Käy läpi kaikki naapurit...
+            /*(sender as Cell).GetNeighbours(Cells).ForEach(each => {
+                //Värjätään kaikki cellit, joihin isketään AOE:lla
+            });*/
+            CellGridState.OnCellClicked(sender as Cell);
+
+        }
     }
 
     private void OnUnitClicked(object sender, EventArgs e)
@@ -281,8 +296,9 @@ public class CellGrid : MonoBehaviour
 	public void CanAttack(){
 
         Skills[0].SkillActivator(CurrentUnit);
-        
-        CellGridState.AttackSelector();
+        CurrentUnit.CurrentSkill = Skills[0];
+
+        CellGridState.AttackSelector(CurrentUnit);
 
     }
 }

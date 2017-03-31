@@ -17,6 +17,10 @@ public class MySquare : Square
     {
         SetColor(new Color(1,0.92f,0.16f,0.5f));
     }
+    public override void MarkAsTarget()
+    {
+        GetComponent<Renderer>().material.color = Color.cyan;
+    }
     public override void MarkAsPath()
     {
         SetColor(new Color(0,1,0,0.5f));

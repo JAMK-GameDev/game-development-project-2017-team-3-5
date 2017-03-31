@@ -81,7 +81,7 @@ public abstract class Unit : MonoBehaviour
 	//Values
     public float HitPoints;
     public int AttackRange;
-    public int AttackFactor;
+    public float AttackFactor;
     public int DefenceFactor;
 	public int RealityBreak;
 	public int ChargeTime;
@@ -213,46 +213,77 @@ public abstract class Unit : MonoBehaviour
 
         return false;
     }
+    public virtual bool IsCellAttackable(Cell other, Cell sourceCell, int Range)
+    {
+        if (sourceCell.GetDistance(other) <= Range)
+            return true;
+
+        return false;
+    }
     /// <summary>
     /// Method deals damage to unit given as parameter.
     /// </summary>
     /// 
 
-        
-    public virtual void DoSkill(Unit other /*, int Range*/)
+
+    public virtual void DoSkill(GameObject other /*, int Range*/)
     {
+        if (other.GetComponent<Cell>() != null) CastSkill(other.GetComponent<Cell>());
+        if (other.GetComponent<Unit>() != null) CastSkill(other.GetComponent<Unit>());
+    }
+    private void CastSkill(Cell c)
+    {
+        //Loop trhough all neighbours if skill has aoe
+        c.GetNeighbours().ForEach(each => {
+
+        });
+    }
+    private void CastSkill(Unit other)
+    {
+        //Check type of skill
+        if (CurrentSkill is MySkill)
+        {
+
+        }
+
         if (isMoving)
             return;
         if (ActionPoints == 0)
             return;
         if (!IsUnitAttackable(other, Cell, CurrentSkill.SkillRange))
-       //     return;
-       //^^add back later
+            return;
+        //^^add back later
 
         MarkAsAttacking(other);
         ActionPoints--;
-        
+
+        //I use skill to other
         other.Target(this);
 
         if (ActionPoints == 0)
         {
             SetState(new UnitStateMarkedAsFinished(this));
             MovementPoints = 0;
-        }  
+        }
     }
-    
+
 
 
     /// <summary>
-    /// Attacking unit calls Defend method on defending unit. 
+    /// Caster unit calls Target method on target unit. 
+    /// Target unit is affected by caster units current skill.
     /// </summary>
     /// 
-
-    
     protected virtual void Target(Unit other)
     {
+        Debug.Log(this);
+        Debug.Log(other);
+        Debug.Log(other.CurrentSkill);
+        
         MarkAsDefending(other);
-        HitPoints -= CurrentSkill.SkillFormula(this);  //Damage is calculated by subtracting attack factor of attacker and defence factor of defender. If result is below 1, it is set to 1.
+        Unit temp = this;
+        
+        HitPoints -= other.CurrentSkill.SkillFormula(other);  
                                                                       //This behaviour can be overridden in derived classes.
         if (UnitAttacked != null)
             UnitAttacked.Invoke(this, new AttackEventArgs(other, this));

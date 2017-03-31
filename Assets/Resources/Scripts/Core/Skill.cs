@@ -52,8 +52,8 @@ public abstract class Skill : MonoBehaviour {
     {
         if (IsWeaponRange == true) { SkillRange = b.AttackRange; }
         
-        b.CurrentSkill = this;
         
+
 
     }
 

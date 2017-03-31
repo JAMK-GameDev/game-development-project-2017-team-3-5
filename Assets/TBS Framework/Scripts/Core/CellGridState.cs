@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 public abstract class CellGridState
 {
@@ -12,7 +13,7 @@ public abstract class CellGridState
     public virtual void OnUnitClicked(Unit unit)
     { }
 
-    public virtual void AttackSelector() { }
+    public virtual void AttackSelector(Unit i) { }
 
 
     public virtual void OnCellDeselected(Cell cell)
@@ -23,6 +24,7 @@ public abstract class CellGridState
     {
         cell.MarkAsHighlighted();
     }
+    public virtual void OnCellAttack() { }
     public virtual void OnCellClicked(Cell cell)
     { }
 

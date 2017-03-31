@@ -34,6 +34,10 @@ class MyHexagon : Hexagon
     {
         SetColor(Color.yellow);
     }
+    public override void MarkAsTarget()
+    {
+        GetComponent<Renderer>().material.color = Color.cyan;
+    }
     public override void MarkAsPath()
     {
         SetColor(Color.green);;
