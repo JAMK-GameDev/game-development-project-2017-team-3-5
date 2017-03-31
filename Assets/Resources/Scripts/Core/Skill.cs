@@ -36,26 +36,37 @@ public abstract class Skill : MonoBehaviour {
     CostTypes Cost;
     */
 
-    public float x, y, z;
+    
+
+    public float rawValueDmg, rawValueChance, rawValueExtra; //Formula modifiers
 
     public int SkillRange;
 
-    bool IsWeaponRange;
+    public bool IsWeaponRange;
 
-    int AOE;
+    public int AOE;
 
     
 
-    public void SkillActivator(Unit b)
+    public  virtual void SkillActivator(Unit b)
     {
         if (IsWeaponRange == true) { SkillRange = b.AttackRange; }
-
+        
+        b.CurrentSkill = this;
         
 
     }
-    
-    
-    
+
+    public float SkillFormula(Unit b)
+    {
+        
+        float dmg = rawValueDmg * b.AttackFactor;
+        
+        return dmg;
+
+    }
+
+
 
 
 

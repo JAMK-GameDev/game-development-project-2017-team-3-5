@@ -39,7 +39,7 @@ public abstract class Unit : MonoBehaviour
     //Type = DamageTypes.Heal;
 
 
-    public Skill CurrentSkill { get; private set; }
+    public Skill CurrentSkill { get; set; }
 
     /// <summary>
     /// UnitClicked event is invoked when user clicks the unit. It requires a collider on the unit game object to work.
@@ -69,7 +69,7 @@ public abstract class Unit : MonoBehaviour
     public List<Buff> Buffs { get; private set; }
 
 	//Total values
-    public int TotalHitPoints { get; private set; }
+    public float TotalHitPoints { get; private set; }
     protected int TotalMovementPoints;
     protected int TotalActionPoints;
 
@@ -79,7 +79,7 @@ public abstract class Unit : MonoBehaviour
     public Cell Cell { get; set; }
 
 	//Values
-    public int HitPoints;
+    public float HitPoints;
     public int AttackRange;
     public int AttackFactor;
     public int DefenceFactor;
@@ -231,6 +231,7 @@ public abstract class Unit : MonoBehaviour
 
         MarkAsAttacking(other);
         ActionPoints--;
+        
         other.Target(this);
 
         if (ActionPoints == 0)
@@ -251,15 +252,15 @@ public abstract class Unit : MonoBehaviour
     protected virtual void Target(Unit other)
     {
         MarkAsDefending(other);
-        HitPoints -= Mathf.Clamp(damage - DefenceFactor, 1, damage);  //Damage is calculated by subtracting attack factor of attacker and defence factor of defender. If result is below 1, it is set to 1.
+        HitPoints -= CurrentSkill.SkillFormula(this);  //Damage is calculated by subtracting attack factor of attacker and defence factor of defender. If result is below 1, it is set to 1.
                                                                       //This behaviour can be overridden in derived classes.
         if (UnitAttacked != null)
-            UnitAttacked.Invoke(this, new AttackEventArgs(other, this, damage));
+            UnitAttacked.Invoke(this, new AttackEventArgs(other, this));
 
         if (HitPoints <= 0)
         {
             if (UnitDestroyed != null)
-                UnitDestroyed.Invoke(this, new AttackEventArgs(other, this, damage));
+                UnitDestroyed.Invoke(this, new AttackEventArgs(other, this));
             OnDestroyed();
         }
     }
@@ -427,11 +428,11 @@ public class AttackEventArgs : EventArgs
 
     public int Damage;
 
-    public AttackEventArgs(Unit attacker, Unit defender, int damage)
+    public AttackEventArgs(Unit attacker, Unit defender/*, int damage*/)
     {
         Attacker = attacker;
         Defender = defender;
 
-        Damage = damage;
+       // Damage = damage;
     }
 }

@@ -16,6 +16,7 @@ public class CellGrid : MonoBehaviour
 	public event EventHandler ClockTickActive;
 	public event EventHandler ActiveTurnStart;
 
+
 	public Unit CurrentUnit { get; private set; }
     
     public List<Unit> UnitOrderCT { get; private set; }
@@ -50,6 +51,10 @@ public class CellGrid : MonoBehaviour
 
     public Transform PlayersParent;
 
+    public Transform SkillsParent;
+
+    
+
     public List<Player> Players { get; private set; }
     public List<Cell> Cells { get; private set; }
     public List<Unit> Units { get; private set; }
@@ -57,6 +62,7 @@ public class CellGrid : MonoBehaviour
 
     void Start()
     {
+        
         Players = new List<Player>();
         for (int i = 0; i < PlayersParent.childCount; i++)
         {
@@ -78,7 +84,17 @@ public class CellGrid : MonoBehaviour
             else
                 Debug.LogError("Invalid object in cells paretn game object");
         }
-      
+
+        Skills = new List<Skill>();
+        for (int i = 0; i < SkillsParent.childCount; i++)
+        {
+            var skill = SkillsParent.GetChild(i).GetComponent<Skill>();
+            if (skill != null)
+                Skills.Add(skill);
+            else
+                Debug.LogError("Invalid object in Skills Parent game object");
+        }
+
         foreach (var cell in Cells)
         {
             cell.CellClicked += OnCellClicked;
@@ -265,6 +281,7 @@ public class CellGrid : MonoBehaviour
 	public void CanAttack(){
 
         Skills[0].SkillActivator(CurrentUnit);
+        
         CellGridState.AttackSelector();
 
     }
