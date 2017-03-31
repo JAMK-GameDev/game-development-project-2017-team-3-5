@@ -6,6 +6,8 @@ using UnityEngine;
 /// <summary>
 /// Simple implementation of AI for the game.
 /// </summary>
+/// 
+/*
 public class NaiveAiPlayer : Player
 {
     private CellGrid _cellGrid;
@@ -112,3 +114,6 @@ public class NaiveAiPlayer : Player
         _cellGrid.EndTurn();     
     }
 }
+
+
+    */

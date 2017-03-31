@@ -9,6 +9,38 @@ using System.Collections;
 /// </summary>
 public abstract class Unit : MonoBehaviour
 {
+    /*
+    AttackBuff(Unit u, int nmr)
+    {
+        List skillist = new List();
+        float dmg = 0;
+        (skillist[nmr].DamageType == Skill.DamageTypes.MagicDamage){
+
+        skillist[nmr].Range AOE skillcost
+                u.Cell.GetNeighbours
+        }
+        u.DefenceFactor
+    }
+    */
+
+    float Totalvalue;
+    float TicksPerSecond, tickStartTime, tickTotalTime;
+    
+    enum DamageTypes
+    {
+        Damage, MagicDamage, StaticDamage, Heal, Buff, Debuff
+    }
+    enum CostTypes
+    {
+        Hitpoints, ImaginationPoints, ChargingTime, RealityBreak
+    }
+    DamageTypes Type;
+    CostTypes Cost;
+    //Type = DamageTypes.Heal;
+
+
+    public Skill CurrentSkill { get; set; }
+
     /// <summary>
     /// UnitClicked event is invoked when user clicks the unit. It requires a collider on the unit game object to work.
     /// </summary>
@@ -31,12 +63,13 @@ public abstract class Unit : MonoBehaviour
     public void SetState(UnitState state)
     {
         UnitState.MakeTransition(state);
+        
     }
 	//Status effects
     public List<Buff> Buffs { get; private set; }
 
 	//Total values
-    public int TotalHitPoints { get; private set; }
+    public float TotalHitPoints { get; private set; }
     protected int TotalMovementPoints;
     protected int TotalActionPoints;
 
@@ -46,7 +79,7 @@ public abstract class Unit : MonoBehaviour
     public Cell Cell { get; set; }
 
 	//Values
-    public int HitPoints;
+    public float HitPoints;
     public int AttackRange;
     public int AttackFactor;
     public int DefenceFactor;
@@ -173,9 +206,9 @@ public abstract class Unit : MonoBehaviour
     /// <summary>
     /// Method indicates if it is possible to attack unit given as parameter, from cell given as second parameter.
     /// </summary>
-    public virtual bool IsUnitAttackable(Unit other, Cell sourceCell)
+    public virtual bool IsUnitAttackable(Unit other, Cell sourceCell, int Range)
     {
-        if (sourceCell.GetDistance(other.Cell) <= AttackRange)
+        if (sourceCell.GetDistance(other.Cell) <= Range)
             return true;
 
         return false;
@@ -183,18 +216,23 @@ public abstract class Unit : MonoBehaviour
     /// <summary>
     /// Method deals damage to unit given as parameter.
     /// </summary>
-    public virtual void DealDamage(Unit other)
+    /// 
+
+        
+    public virtual void DoSkill(Unit other /*, int Range*/)
     {
         if (isMoving)
             return;
         if (ActionPoints == 0)
             return;
-        if (!IsUnitAttackable(other, Cell))
-            return;
+        if (!IsUnitAttackable(other, Cell, CurrentSkill.SkillRange))
+       //     return;
+       //^^add back later
 
         MarkAsAttacking(other);
         ActionPoints--;
-        other.Defend(this, AttackFactor);
+        
+        other.Target(this);
 
         if (ActionPoints == 0)
         {
@@ -202,24 +240,31 @@ public abstract class Unit : MonoBehaviour
             MovementPoints = 0;
         }  
     }
+    
+
+
     /// <summary>
     /// Attacking unit calls Defend method on defending unit. 
     /// </summary>
-    protected virtual void Defend(Unit other, int damage)
+    /// 
+
+    
+    protected virtual void Target(Unit other)
     {
         MarkAsDefending(other);
-        HitPoints -= Mathf.Clamp(damage - DefenceFactor, 1, damage);  //Damage is calculated by subtracting attack factor of attacker and defence factor of defender. If result is below 1, it is set to 1.
+        HitPoints -= CurrentSkill.SkillFormula(this);  //Damage is calculated by subtracting attack factor of attacker and defence factor of defender. If result is below 1, it is set to 1.
                                                                       //This behaviour can be overridden in derived classes.
         if (UnitAttacked != null)
-            UnitAttacked.Invoke(this, new AttackEventArgs(other, this, damage));
+            UnitAttacked.Invoke(this, new AttackEventArgs(other, this));
 
         if (HitPoints <= 0)
         {
             if (UnitDestroyed != null)
-                UnitDestroyed.Invoke(this, new AttackEventArgs(other, this, damage));
+                UnitDestroyed.Invoke(this, new AttackEventArgs(other, this));
             OnDestroyed();
         }
     }
+    
 
     public virtual void Move(Cell destinationCell, List<Cell> path)
     {
@@ -383,11 +428,11 @@ public class AttackEventArgs : EventArgs
 
     public int Damage;
 
-    public AttackEventArgs(Unit attacker, Unit defender, int damage)
+    public AttackEventArgs(Unit attacker, Unit defender/*, int damage*/)
     {
         Attacker = attacker;
         Defender = defender;
 
-        Damage = damage;
+       // Damage = damage;
     }
 }

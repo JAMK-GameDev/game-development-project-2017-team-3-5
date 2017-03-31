@@ -1,5 +1,6 @@
 ﻿public class Paladin : MyUnit
 {
+    /*
     protected override void Defend(Unit other, int damage)
     {
         var realDamage = damage;
@@ -8,4 +9,5 @@
 
         base.Defend(other, realDamage);
     }
+    */
 }

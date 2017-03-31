@@ -16,11 +16,14 @@ public class CellGrid : MonoBehaviour
 	public event EventHandler ClockTickActive;
 	public event EventHandler ActiveTurnStart;
 
+
 	public Unit CurrentUnit { get; private set; }
-	public List<Unit> UnitOrderCT { get; private set; }
+    
+    public List<Unit> UnitOrderCT { get; private set; }
 	public int UnitNumber { get; private set; }
 	public bool TurnIsActive { get; private set; }
-	public bool canMove = false, canAttack = false;
+	public bool canMove = false;
+
     
     private CellGridState _cellGridState;//The grid delegates some of its behaviours to cellGridState object.
     public CellGridState CellGridState
@@ -48,12 +51,18 @@ public class CellGrid : MonoBehaviour
 
     public Transform PlayersParent;
 
+    public Transform SkillsParent;
+
+    
+
     public List<Player> Players { get; private set; }
     public List<Cell> Cells { get; private set; }
     public List<Unit> Units { get; private set; }
+    public List<Skill> Skills { get; private set; }
 
     void Start()
     {
+        
         Players = new List<Player>();
         for (int i = 0; i < PlayersParent.childCount; i++)
         {
@@ -75,7 +84,17 @@ public class CellGrid : MonoBehaviour
             else
                 Debug.LogError("Invalid object in cells paretn game object");
         }
-      
+
+        Skills = new List<Skill>();
+        for (int i = 0; i < SkillsParent.childCount; i++)
+        {
+            var skill = SkillsParent.GetChild(i).GetComponent<Skill>();
+            if (skill != null)
+                Skills.Add(skill);
+            else
+                Debug.LogError("Invalid object in Skills Parent game object");
+        }
+
         foreach (var cell in Cells)
         {
             cell.CellClicked += OnCellClicked;
@@ -126,7 +145,7 @@ public class CellGrid : MonoBehaviour
     private void OnUnitClicked(object sender, EventArgs e)
 	{
 		//Can only attack when is units turn and player selected action
-		if(canAttack) CellGridState.OnUnitClicked(sender as Unit);
+		CellGridState.OnUnitClicked(sender as Unit);
     }
     private void OnUnitDestroyed(object sender, AttackEventArgs e)
     {
@@ -152,12 +171,15 @@ public class CellGrid : MonoBehaviour
         //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
         //Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
     }
+
+
 	public void ActiveTurn(Unit a){
 		print ("In Active turn");
 		if (ActiveTurnStart != null) ActiveTurnStart.Invoke(this, new EventArgs());
 		
 		TurnIsActive = true; //NOTE: Not in use right now...
 		CurrentUnit = a;
+        
 		CurrentPlayerNumber = a.PlayerNumber;
 		Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart2(); });
 		a.OnTurnStart();
@@ -245,7 +267,6 @@ public class CellGrid : MonoBehaviour
 		UnitNumber = UnitOrderCT.Count();
 		ClockTick();
 		canMove = false;
-		canAttack = false;
 
 		//Needs to be commented, otherwise sudden team attack ;D
         //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
@@ -258,8 +279,10 @@ public class CellGrid : MonoBehaviour
 		CellGridState.OnUnitClicked(CurrentUnit);
 	}
 	public void CanAttack(){
-		canAttack = true;
-		//Selects current unit
-		CellGridState.OnUnitClicked(CurrentUnit);
-	}
+
+        Skills[0].SkillActivator(CurrentUnit);
+        
+        CellGridState.AttackSelector();
+
+    }
 }
