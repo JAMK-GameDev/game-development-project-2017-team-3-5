@@ -26,9 +26,9 @@ public class MyUnit : Unit
         gameObject.transform.position = Cell.transform.position + new Vector3(0, 0, -1.5f);
     }
 
-    protected override void Target(Unit other)
+    protected override void Cast(Unit other)
     {
-        base.Target(other);
+        base.Cast(other);
         UpdateHpBar();
     }
 

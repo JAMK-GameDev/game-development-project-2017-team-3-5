@@ -8,6 +8,8 @@ class CellGridStateUnitSelected : CellGridState
     private List<Cell> _pathsInRange;
     private List<Cell> _cellsInRange;
     private List<Unit> _unitsInRange;
+    private List<Cell> aoeCellList;
+    private List<Unit> aoeUnitList;
 
     private Cell _unitCell;
 
@@ -23,15 +25,61 @@ class CellGridStateUnitSelected : CellGridState
     {
         if (_unit.isMoving)
             return;
-        if(cell.IsTaken)
+        if(cell.IsTaken && _cellGrid.canMove && _unit.MovementPoints > 0)
         {
             _cellGrid.CellGridState = new CellGridStateWaitingForInput(_cellGrid);
+            _cellGrid.canMove = false;
             return;
         }
 
         if (_cellsInRange.Contains(cell) && _unit.ActionPoints > 0)
         {
-            _unit.DoSkill(cell.GetComponent<GameObject>());
+            //Check neighbour cells if aoe > 0
+            //Add these cells to list
+
+            //Check through this celllist
+            //if cell is taken, find that unit in cell if it is unit, might be obstacle so doesn't find unit
+            //if unit found, add it to aoe unit list
+
+            //Go through unit list and cast skill to all of them to make dmg
+            //check damaga in unit to calculate dmg based on attributes
+            aoeCellList.Add(cell);
+
+            for(int i = 0; i < _unit.CurrentSkill.AOE; i++)
+            {
+                int b = aoeCellList.Count();
+                for (int a = 0; a < b; a++)
+                {
+                    aoeCellList.AddRange(aoeCellList[a].GetNeighbours(_cellGrid.Cells));
+                    //Dont worry, Distinct is god!
+                }
+            }
+            //If it doesn't add this cell swell...
+            
+            aoeCellList = new List<Cell>(aoeCellList.Distinct());
+            //Go through cells
+            foreach(Cell currentCell in aoeCellList)
+            {
+                //Check if cell is taken
+                if (currentCell.IsTaken)
+                {
+                    //Find cell taker
+                    _cellGrid.Units.ForEach(u => {
+                        //If unit cell contains this cell
+                        if (u.Cell.Equals(currentCell))
+                        {
+                            //Add unit to list
+                            aoeUnitList.Add(u);
+                        }
+                    });
+                }
+            }
+            
+            //Go through units
+            
+            aoeUnitList = new List<Unit>(aoeUnitList.Distinct());
+            
+            _unit.DoSkill(aoeUnitList);
             _cellGrid.CellGridState = new CellGridStateUnitSelected(_cellGrid, _unit);
         }
 
@@ -53,7 +101,7 @@ class CellGridStateUnitSelected : CellGridState
 
         if (_unitsInRange.Contains(unit) && _unit.ActionPoints > 0)
         {
-            _unit.DoSkill(unit.GetComponent<GameObject>());
+            //_unit.DoSkill(unit);
             _cellGrid.CellGridState = new CellGridStateUnitSelected(_cellGrid, _unit);
         }
 

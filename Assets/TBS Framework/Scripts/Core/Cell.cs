@@ -17,7 +17,7 @@ public abstract class Cell : MonoBehaviour, IGraphNode
     /// Cost of moving through the cell.
     /// </summary>
     public int MovementCost;
-
+    public Unit Unit { get; set; }
     /// <summary>
     /// CellClicked event is invoked when user clicks the unit. It requires a collider on the cell game object to work.
     /// </summary>

@@ -37,7 +37,8 @@ public abstract class Unit : MonoBehaviour
     DamageTypes Type;
     CostTypes Cost;
     //Type = DamageTypes.Heal;
-
+    private List<Cell> aoeCellList;
+    public List<Unit> aoeUnitList;
 
     public Skill CurrentSkill { get; set; }
 
@@ -226,21 +227,8 @@ public abstract class Unit : MonoBehaviour
     /// 
 
 
-    public virtual void DoSkill(GameObject other /*, int Range*/)
+    public virtual void DoSkill(List<Unit> UnitList)
     {
-        if (other.GetComponent<Cell>() != null) CastSkill(other.GetComponent<Cell>());
-        if (other.GetComponent<Unit>() != null) CastSkill(other.GetComponent<Unit>());
-    }
-    private void CastSkill(Cell c)
-    {
-        //Loop trhough all neighbours if skill has aoe
-        c.GetNeighbours().ForEach(each => {
-
-        });
-    }
-    private void CastSkill(Unit other)
-    {
-        //Check type of skill
         if (CurrentSkill is MySkill)
         {
 
@@ -250,22 +238,47 @@ public abstract class Unit : MonoBehaviour
             return;
         if (ActionPoints == 0)
             return;
-        if (!IsUnitAttackable(other, Cell, CurrentSkill.SkillRange))
+        /*
+        if (!IsCellAttackable(target, Cell, CurrentSkill.SkillRange))
             return;
+            */
         //^^add back later
 
-        MarkAsAttacking(other);
-        ActionPoints--;
-
-        //I use skill to other
-        other.Target(this);
-
-        if (ActionPoints == 0)
+        /*
+        aoeCellList = target.GetNeighbours(CellList);
+        
+        foreach (Unit currentUnit in aoeCellList.Units)
         {
-            SetState(new UnitStateMarkedAsFinished(this));
-            MovementPoints = 0;
+
+            if (this.IsCellAttackable(currentUnit.Cell, this.Cell))
+            {
+
+
+                aoeUnitList.Add(currentUnit);
+            }
+        }
+        */
+
+        int o = UnitList.Count();
+        Debug.Log(UnitList);
+        for (int n = 0; n < o; ++n)
+        {
+            MarkAsAttacking(UnitList[n]);
+            UnitList[n].ActionPoints--;
+
+            //I use skill to other
+            UnitList[n].Cast(this);
+
         }
     }
+    private void CastSkill(Cell c)
+    {
+        //Loop trhough all neighbours if skill has aoe
+       // c.GetNeighbours().ForEach(each => {
+
+       
+    }
+    
 
 
 
@@ -274,24 +287,27 @@ public abstract class Unit : MonoBehaviour
     /// Target unit is affected by caster units current skill.
     /// </summary>
     /// 
-    protected virtual void Target(Unit other)
+    protected virtual void Cast(Unit caster)
     {
         Debug.Log(this);
-        Debug.Log(other);
-        Debug.Log(other.CurrentSkill);
+        Debug.Log(caster);
+        Debug.Log(caster.CurrentSkill);
         
-        MarkAsDefending(other);
+        MarkAsDefending(caster);
         Unit temp = this;
         
-        HitPoints -= other.CurrentSkill.SkillFormula(other);  
-                                                                      //This behaviour can be overridden in derived classes.
+        HitPoints -= caster.CurrentSkill.SkillFormula(caster);
+
+        //This behaviour can be overridden in derived classes.
+
+        Debug.Log(caster.CurrentSkill.SkillFormula(caster));
         if (UnitAttacked != null)
-            UnitAttacked.Invoke(this, new AttackEventArgs(other, this));
+            UnitAttacked.Invoke(this, new AttackEventArgs(caster, this));
 
         if (HitPoints <= 0)
         {
             if (UnitDestroyed != null)
-                UnitDestroyed.Invoke(this, new AttackEventArgs(other, this));
+                UnitDestroyed.Invoke(this, new AttackEventArgs(caster, this));
             OnDestroyed();
         }
     }

@@ -298,7 +298,7 @@ public class CellGrid : MonoBehaviour
         Skills[0].SkillActivator(CurrentUnit);
         CurrentUnit.CurrentSkill = Skills[0];
 
-        CellGridState.AttackSelector(CurrentUnit);
+        CellGridState.OnCellAttack();
 
     }
 }
