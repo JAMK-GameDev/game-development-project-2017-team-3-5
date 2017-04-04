@@ -12,6 +12,11 @@ public abstract class Square : Cell
     {
         return (int)(Mathf.Abs(OffsetCoord.x - other.OffsetCoord.x) + Mathf.Abs(OffsetCoord.y - other.OffsetCoord.y));
     }//Distance is given using Manhattan Norm.
+
+    public override int AttackerSide(Cell other)
+    {
+        return (int)(Mathf.Abs(OffsetCoord.x - other.OffsetCoord.x) + Mathf.Abs(OffsetCoord.y - other.OffsetCoord.y));
+    }//Distance is given using Manhattan Norm.
     public override List<Cell> GetNeighbours(List<Cell> cells)
     {
         List<Cell> ret = new List<Cell>();

@@ -200,6 +200,7 @@ public class CellGrid : MonoBehaviour
 		a.OnTurnStart();
 		Players.Find(p => p.PlayerNumber.Equals(a.PlayerNumber)).Play(this);
 		print ("Left Active turn");
+
 	}
 	public void ClockTick() {
 		if (ClockTickActive != null)

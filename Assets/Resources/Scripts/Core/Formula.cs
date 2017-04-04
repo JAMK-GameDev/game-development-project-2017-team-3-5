@@ -3,17 +3,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections;
+using System.Text;
+using System.IO;
+using System.Reflection;
+using System.CodeDom.Compiler;
+
 
 public abstract class Formula : MonoBehaviour {
 
-	// Use this for initialization
-	void  Formula1(int k)
-    {
+    
 
-        // http://stackoverflow.com/questions/826398/is-it-possible-to-dynamically-compile-and-execute-c-sharp-code-fragments
+    // Use this for initialization
+    
 
-    }
-
+   
 
 
 }
+
+
+

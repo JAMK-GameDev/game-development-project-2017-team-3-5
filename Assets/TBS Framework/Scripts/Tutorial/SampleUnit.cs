@@ -32,7 +32,7 @@ public class SampleUnit : Unit
 
     public override void MarkAsReachableEnemy()
     {
-        GetComponent<Renderer>().material.color = LeadingColor + Color.red ;
+        GetComponent<Renderer>().material.color = LeadingColor + Color.red;
     }
 
     public override void MarkAsSelected()

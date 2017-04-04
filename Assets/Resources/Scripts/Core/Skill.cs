@@ -44,6 +44,10 @@ public abstract class Skill : MonoBehaviour {
 
     public bool IsWeaponRange;
 
+    public bool IsIPdmg;
+
+    public bool IsHeal;
+
     public int AOE;
 
     
@@ -57,14 +61,7 @@ public abstract class Skill : MonoBehaviour {
 
     }
 
-    public float SkillFormula(Unit b)
-    {
-        
-        float dmg = rawValueDmg * b.AttackFactor;
-        
-        return dmg;
-
-    }
+    public abstract float SkillFormula(Unit b);
 
 
 

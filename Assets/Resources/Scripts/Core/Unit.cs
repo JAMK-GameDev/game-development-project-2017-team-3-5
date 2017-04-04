@@ -258,18 +258,21 @@ public abstract class Unit : MonoBehaviour
             }
         }
         */
-
+        Debug.Log("stops");
         int o = UnitList.Count();
         Debug.Log(UnitList);
         for (int n = 0; n < o; ++n)
         {
             MarkAsAttacking(UnitList[n]);
-            UnitList[n].ActionPoints--;
+            
 
             //I use skill to other
             UnitList[n].Cast(this);
 
         }
+
+        ActionPoints--;
+        
     }
     private void CastSkill(Cell c)
     {

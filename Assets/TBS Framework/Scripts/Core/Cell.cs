@@ -50,6 +50,11 @@ public abstract class Cell : MonoBehaviour, IGraphNode
     public abstract int GetDistance(Cell other);
 
     /// <summary>
+    /// Method returns the direction th attack is coming from 
+    /// </summary>
+    public abstract int AttackerSide(Cell other);
+
+    /// <summary>
     /// Method returns cells adjacent to current cell, from list of cells given as parameter.
     /// </summary>
     public abstract List<Cell> GetNeighbours(List<Cell> cells);
@@ -81,4 +86,10 @@ public abstract class Cell : MonoBehaviour, IGraphNode
     {
         return GetDistance(other as Cell);
     }
+
+    public int AttackerSide(IGraphNode other)
+    {
+        return AttackerSide(other as Cell);
+    }
+
 }

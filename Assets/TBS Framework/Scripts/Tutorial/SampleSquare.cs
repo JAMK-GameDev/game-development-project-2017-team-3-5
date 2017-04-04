@@ -26,7 +26,7 @@ class SampleSquare : Square
 
     public override void MarkAsTarget()
     {
-        GetComponent<Renderer>().material.color = Color.gray;
+        GetComponent<Renderer>().material.color = Color.red;
     }
 
     public override void UnMark()
