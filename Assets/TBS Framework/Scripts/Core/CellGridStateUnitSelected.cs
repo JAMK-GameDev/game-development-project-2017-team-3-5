@@ -10,6 +10,7 @@ class CellGridStateUnitSelected : CellGridState
     private List<Unit> _unitsInRange;
     private List<Cell> aoeCellList;
     private List<Unit> aoeUnitList;
+    private List<Cell> directionOne;
 
     private Cell _unitCell;
 
@@ -20,8 +21,9 @@ class CellGridStateUnitSelected : CellGridState
         _unitsInRange = new List<Unit>();
         _cellsInRange  = new List<Cell>();
         aoeCellList = new List<Cell>();
-        aoeUnitList = new List<Unit>(); 
-}
+        aoeUnitList = new List<Unit>();
+        directionOne = new List<Cell>();
+    }
 
     public override void OnCellClicked(Cell cell)
     {
@@ -37,6 +39,9 @@ class CellGridStateUnitSelected : CellGridState
         if (_cellsInRange.Contains(cell) && _unit.ActionPoints > 0)
         {
 
+            int p = 1;
+            if (p == 0) { directionOne.Add(cell); AttackDirection(); }
+            
             Debug.Log("stops");
             //Check neighbour cells if aoe > 0
             //Add these cells to list
@@ -101,6 +106,54 @@ class CellGridStateUnitSelected : CellGridState
     }
 
 
+    public void AttackDirection()
+    {
+        int dir = 0;
+        
+        for (int i = 0; i < 50; i++)
+        {
+            directionOne.AddRange(aoeCellList[i].SideLocation(_cellGrid.Cells, dir));
+            if (i == 0) { }
+            for (int a = 0; a < i; a++)
+            {
+                directionOne.AddRange(aoeCellList[i].SideLocation(_cellGrid.Cells, dir));
+                //Dont worry, Distinct is god!
+            }
+        }
+       
+
+        aoeCellList = new List<Cell>(aoeCellList.Distinct());
+        //Go through cells
+        foreach (Cell currentCell in aoeCellList)
+        {
+            //Check if cell is taken
+            if (currentCell.IsTaken)
+            {
+                //Find cell taker
+                _cellGrid.Units.ForEach(u => {
+                    //If unit cell contains this cell
+                    if (u.Cell.Equals(currentCell))
+                    {
+                        //Add unit to list
+                        aoeUnitList.Add(u);
+                    }
+                });
+            }
+        }
+
+        //Go through units
+
+        aoeUnitList = new List<Unit>(aoeUnitList.Distinct());
+
+        _unit.DoSkill(aoeUnitList);
+
+        if (_unit.HitPoints <= 0) _cellGrid.EndTurn();
+
+        _cellGrid.CellGridState = new CellGridStateUnitSelected(_cellGrid, _unit);
+
+    }
+
+
     public override void OnCellAttack()
     {
         //allows you to select cell's as attack target
@@ -121,6 +174,8 @@ class CellGridStateUnitSelected : CellGridState
                 */
             }
         }
+
+
 
         //allows you to select unit's as targets
         foreach (var currentUnit in _cellGrid.Units)
