@@ -1,10 +1,10 @@
-﻿class MySkill : Skill
+﻿class Formula_2 : Skill
 {
     public override float SkillFormula(Unit b)
     {
-        float value = rawValueDmg * b.PhysicalPower;
+        float dmg = rawValueDmg * b.MagicalPower * b.PhysicalPower * -1 ; //-1 makes it a heal formula
 
-        return value;
+        return dmg;
 
     }
 }

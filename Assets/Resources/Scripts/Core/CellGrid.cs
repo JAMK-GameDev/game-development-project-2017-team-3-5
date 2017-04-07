@@ -296,10 +296,47 @@ public class CellGrid : MonoBehaviour
 	}
 	public void CanAttack(){
 
-        Skills[0].SkillActivator(CurrentUnit);
+        
         CurrentUnit.CurrentSkill = Skills[0];
+        CurrentUnit.CurrentSkill.SkillActivator(CurrentUnit);
 
         CellGridState.OnCellAttack();
 
     }
+
+    public void Magic()
+    {
+
+        if (CurrentUnit.ImaginationPoints >= CurrentUnit.CurrentSkill.IPcost)
+        {
+
+        CurrentUnit.CurrentSkill = Skills[1];
+        CurrentUnit.CurrentSkill.SkillActivator(CurrentUnit);
+        CurrentUnit.ImaginationPoints -= CurrentUnit.CurrentSkill.IPcost;
+        CellGridState.OnCellAttack();
+        }
+        else
+        {
+            //Not Enough IP Error
+            return;
+        }
+
+    }
+
+    public void RealityBreak()
+    {
+
+        if (CurrentUnit.RealityBreak >= 100) {
+         
+        CurrentUnit.CurrentSkill = Skills[2];
+        CurrentUnit.CurrentSkill.SkillActivator(CurrentUnit);
+        CurrentUnit.RealityBreak = 0;
+        CellGridState.OnCellAttack();
+        } else
+        {
+            //Not Enough
+            return;
+        }
+    }
+
 }

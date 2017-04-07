@@ -11,12 +11,12 @@
     public int Duration { get; set; }
     public void Apply(Unit unit)
     {
-        unit.AttackFactor += _factor;
+        unit.PhysicalPower += _factor;
     }
 
     public void Undo(Unit unit)
     {
-        unit.AttackFactor -= _factor;
+        unit.PhysicalPower -= _factor;
     }
 
     public Buff Clone()

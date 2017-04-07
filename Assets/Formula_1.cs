@@ -1,10 +1,10 @@
-﻿class MySkill : Skill
+﻿class Formula_1 : Skill
 {
     public override float SkillFormula(Unit b)
     {
-        float value = rawValueDmg * b.PhysicalPower;
+        float dmg = rawValueDmg * b.MagicalPower;
 
-        return value;
+        return dmg;
 
     }
 }

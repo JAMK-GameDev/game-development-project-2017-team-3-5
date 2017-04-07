@@ -49,6 +49,8 @@ public class MyOtherHexagon : Hexagon
         }
     }
 
+
+
     public override Vector3 GetCellDimensions()
     {
         var ret = GetComponent<SpriteRenderer>().bounds.size;

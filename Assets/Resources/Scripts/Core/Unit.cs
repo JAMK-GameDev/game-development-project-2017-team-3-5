@@ -80,11 +80,14 @@ public abstract class Unit : MonoBehaviour
     public Cell Cell { get; set; }
 
 	//Values
+    
     public float HitPoints;
+    public float ImaginationPoints;
     public int AttackRange;
-    public float AttackFactor;
+    public float PhysicalPower;
+    public float MagicalPower;
     public int DefenceFactor;
-	public int RealityBreak;
+	public float RealityBreak;
 	public int ChargeTime;
 
 	//Attributes
@@ -292,14 +295,16 @@ public abstract class Unit : MonoBehaviour
     /// 
     protected virtual void Cast(Unit caster)
     {
-        Debug.Log(this);
-        Debug.Log(caster);
-        Debug.Log(caster.CurrentSkill);
+        
         
         MarkAsDefending(caster);
-        Unit temp = this;
-        
+
+        RBGain(this, caster);
+    
+
         HitPoints -= caster.CurrentSkill.SkillFormula(caster);
+
+
 
         //This behaviour can be overridden in derived classes.
 
@@ -314,9 +319,16 @@ public abstract class Unit : MonoBehaviour
             OnDestroyed();
         }
     }
-    
 
-    public virtual void Move(Cell destinationCell, List<Cell> path)
+        protected virtual void RBGain(Unit Gainer, Unit trigger)
+        {
+        RealityBreak += ((HitPoints - trigger.CurrentSkill.SkillFormula(trigger)) / HitPoints)*100;
+        if (RealityBreak >= 100) { RealityBreak = 100; }
+        }
+
+
+
+public virtual void Move(Cell destinationCell, List<Cell> path)
     {
         if (isMoving)
             return;

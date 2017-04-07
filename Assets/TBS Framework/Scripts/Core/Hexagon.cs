@@ -73,6 +73,23 @@ public abstract class Hexagon : Cell
         int distance = (int)(Mathf.Abs(CubeCoord.x - _other.CubeCoord.x) + Mathf.Abs(CubeCoord.y - _other.CubeCoord.y) + Mathf.Abs(CubeCoord.z - _other.CubeCoord.z)) / 2;
         return distance;
     }//Distance is given using Manhattan Norm.
+
+    public override List<Cell> SideLocation(List<Cell> cells, int a)
+    {
+
+        List<Cell> ret = new List<Cell>();
+
+        for (int i = 0; i > 0; i++)
+        {
+            var forward = cells.Find(c => c.OffsetCoord == CubeToOffsetCoords(CubeCoord + _directions[a]));
+            if (forward == null) continue;
+
+            ret.Add(forward);
+
+
+        }
+        return ret;
+    }
     public override List<Cell> GetNeighbours(List<Cell> cells)
     {
         List<Cell> ret = new List<Cell>();

@@ -81,7 +81,7 @@ class OtherGuiController : MonoBehaviour
     }
     private void OnUnitHighlighted(object sender, EventArgs e)
     {
-        var attack = (sender as Unit).AttackFactor;
+        var attack = (sender as Unit).PhysicalPower;
         var defence = (sender as Unit).DefenceFactor;
         var range = (sender as Unit).AttackRange;
 

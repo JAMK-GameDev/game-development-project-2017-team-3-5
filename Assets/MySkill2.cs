@@ -2,7 +2,7 @@
 {
     public override float SkillFormula(Unit b)
     {
-        float dmg = rawValueDmg * b.AttackFactor + b.AttackRange;
+        float dmg = rawValueDmg * b.PhysicalPower + b.AttackRange;
 
         return dmg;
 

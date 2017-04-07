@@ -50,6 +50,10 @@ public abstract class Skill : MonoBehaviour {
 
     public int AOE;
 
+    public float IPcost;
+
+    public bool RB;
+
     
 
     public  virtual void SkillActivator(Unit b)
@@ -61,9 +65,17 @@ public abstract class Skill : MonoBehaviour {
 
     }
 
-    public abstract float SkillFormula(Unit b);
+    public virtual float SkillFormula(Unit b) {
+        float value = 0;
 
+        //if (IsHeal == true) { value = value * -1; }
+        //Still seeing what way is the best way to implement healing... Most likely this, but it might not be easy -_-
+        // Yours truly, Toni~
 
+        return value;
+    }
+
+        
 
 
 
