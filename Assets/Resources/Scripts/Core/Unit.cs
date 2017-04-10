@@ -307,7 +307,7 @@ public abstract class Unit : MonoBehaviour
 		caster.turnUnit (this.transform.position);
     
 		//This unit takes damage from caster and checks if its front, side or backstab attack
-		HitPoints -= caster.CurrentSkill.SkillFormula(caster) * caster.getFaceModifier(this.Face);
+		HitPoints -= caster.CurrentSkill.SkillFormula(caster) * caster.getFaceModifier(this.transform.position, this.Face);
 
 
 
