@@ -71,6 +71,7 @@ public abstract class Unit : MonoBehaviour
 
 	//Total values
     public float TotalHitPoints { get; private set; }
+    public float TotalImaginationPoints { get; private set; }
     protected int TotalMovementPoints;
     protected int TotalActionPoints;
 
@@ -128,6 +129,7 @@ public abstract class Unit : MonoBehaviour
         UnitState = new UnitStateNormal(this);
 
         TotalHitPoints = HitPoints;
+        TotalImaginationPoints = ImaginationPoints;
         TotalMovementPoints = MovementPoints;
         TotalActionPoints = ActionPoints;
     }
@@ -264,6 +266,7 @@ public abstract class Unit : MonoBehaviour
         Debug.Log("stops");
         int o = UnitList.Count();
         Debug.Log(UnitList);
+
         for (int n = 0; n < o; ++n)
         {
             MarkAsAttacking(UnitList[n]);
@@ -322,8 +325,8 @@ public abstract class Unit : MonoBehaviour
 
         protected virtual void RBGain(Unit Gainer, Unit trigger)
         {
-        RealityBreak += ((HitPoints - trigger.CurrentSkill.SkillFormula(trigger)) / HitPoints)*100;
-        if (RealityBreak >= 100) { RealityBreak = 100; }
+        RealityBreak += ((trigger.CurrentSkill.SkillFormula(trigger)) / HitPoints)*100;
+        if (RealityBreak > 100) { RealityBreak = 100; }
         }
 
 
