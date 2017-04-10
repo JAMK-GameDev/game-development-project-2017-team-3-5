@@ -94,6 +94,7 @@ public abstract class Unit : MonoBehaviour
 	//Attributes
 	public int UnitID; //Allows us to sort units...
 	public int Speed = 5;
+	public int Face = 1; //Turns character between 4 different sides, North East South West.
     /// <summary>
     /// Determines how far on the grid the unit can move.
     /// </summary>
@@ -303,9 +304,10 @@ public abstract class Unit : MonoBehaviour
         MarkAsDefending(caster);
 
         RBGain(this, caster);
+		caster.turnUnit (this.transform.position);
     
-
-        HitPoints -= caster.CurrentSkill.SkillFormula(caster);
+		//This unit takes damage from caster and checks if its front, side or backstab attack
+		HitPoints -= caster.CurrentSkill.SkillFormula(caster) * caster.getFaceModifier(this.Face);
 
 
 
@@ -331,7 +333,7 @@ public abstract class Unit : MonoBehaviour
 
 
 
-public virtual void Move(Cell destinationCell, List<Cell> path)
+	public virtual void Move(Cell destinationCell, List<Cell> path)
     {
         if (isMoving)
             return;
@@ -342,6 +344,8 @@ public virtual void Move(Cell destinationCell, List<Cell> path)
 
         //MovementPoints -= totalMovementCost;
 		MovementPoints = 0;
+		//Face this unit toward destination
+		this.turnUnit (destinationCell.transform.position);
 
         Cell.IsTaken = false;
         Cell = destinationCell;
@@ -471,6 +475,184 @@ public virtual void Move(Cell destinationCell, List<Cell> path)
     /// Method returns the unit to its base appearance
     /// </summary>
     public abstract void UnMark();
+
+	//Käännä unit kohteen suuntaan
+	public void turnUnit(Vector3 target){
+		float x1 = this.transform.position.x;
+		float y1 = this.transform.position.y;
+		float x2 = target.x;
+		float y2 = target.y;
+		int suunta1 = this.Face;
+
+		if (y2 > y1)
+		{
+			if (x2 > x1 && (x2 - x1 < y2 - y1)) suunta1 = 1;
+			if (x2 < x1 && (x1 - x2 < y2 - y1)) suunta1 = 1;
+			if (x2 == x1) suunta1 = 1;
+		}
+		if (x2 > x1)
+		{
+			if (y2 > y1 && (y2 - y1 < x2 - x1)) suunta1 = 2;
+			if (y2 < y1 && (y1 - y2 < x2 - x1)) suunta1 = 2;
+			if (y2 == y1) suunta1 = 2;
+		}
+		if (y2 < y1)
+		{
+			if (x2 > x1 && (x2 - x1 < y1 - y2)) suunta1 = 3;
+			if (x2 < x1 && (x1 - x2 < y1 - y2)) suunta1 = 3;
+			if (x2 == x1) suunta1 = 3;
+		}
+		if (x2 < x1)
+		{
+			if (y2 > y1 && (y2 - y1 < x2 - x1)) suunta1 = 4;
+			if (y2 < y1 && (y1 - y2 < x2 - x1)) suunta1 = 4;
+			if (y2 == y1) suunta1 = 4;
+		}
+
+		//Jos hyökkääjän ja kohteen vertaus
+		if (x2 > x1 && y2 > y1 && (x2 - x1 == y2 - y1)) suunta1 = 1;
+		if (x2 > x1 && y1 > y2 && (x2 - x1 == y1 - y2)) suunta1 = 2;
+		if (x1 > x2 && y1 > y2 && (x1 - x2 == y1 - y2)) suunta1 = 3;
+		if (x1 > x2 && y2 > y1 && (x1 - x2 == y2 - y1)) suunta1 = 4;
+
+		//Turns character now
+		this.Face = suunta1;
+	}
+
+	//This units dmg modifier against target
+	public float getFaceModifier(Vector3 target, int targetFace){
+		float damage = 9999f;
+		float front = 1.0f;
+		float side = 1.5f;
+		float back = 2.0f;
+
+		float x1 = this.transform.position.x;
+		float x2 = target.x;
+		float y1 = this.transform.position.y;
+		float y2 = target.y;
+		int suunta2 = targetFace;
+
+		//Kohteen suunta hyökätessä ja sen seuraukset
+		switch (suunta2)
+		{
+		case 1:
+			if (y1 <= y2)
+			{
+				if (x1 > x2 && (x1 - x2 >= y2 - y1))
+				{
+					damage = side;
+				}
+				else if (x2 > x1 && (x2 - x1 >= y2 - y1))
+				{
+					damage = side;
+				}
+				else damage = back;
+			}
+			else
+			{
+				if (x1 > x2)
+				{
+					if (x1 - x2 > y1 - y2) damage = side;
+					else damage = front;
+				}
+				else if (x1 < x2)
+				{
+					if (x2 - x1 > y1 - y2) damage = side;
+					else damage = front;
+				}
+				if (x1 == x2) damage = front;
+			}
+			break;
+		case 2:
+			if (x1 <= x2)
+			{
+				if (y1 > y2 && (y1 - y2 >= x2 - x1))
+				{
+					damage = side;
+				}
+				else if (y2 > y1 && (y2 - y1 >= x2 - x1))
+				{
+					damage = side;
+				}
+				else damage = back;
+			}
+			else
+			{
+				if (y1 > y2)
+				{
+					if (y1 - y2 > x1 - x2) damage = side;
+					else damage = front;
+				}
+				else if (y1 < y2)
+				{
+					if (y2 - y1 > x1 - x2) damage = side;
+					else damage = front;
+				}
+				if (y1 == y2) damage = front;
+			}
+			break;
+		case 3:
+			if (y2 <= y1)
+			{
+				if (x1 > x2 && (x1 - x2 >= y1 - y2))
+				{
+					damage = side;
+				}
+				else if (x2 > x1 && (x2 - x1 >= y1 - y2))
+				{
+					damage = side;
+				}
+				else damage = back;
+			}
+			else
+			{
+				if (x1 > x2)
+				{
+					if (x1 - x2 > y2 - y1) damage = side;
+					else damage = front;
+				}
+				else if (x1 < x2)
+				{
+					if (x2 - x1 > y2 - y1) damage = side;
+					else damage = front;
+				}
+				if (x1 == x2) damage = front;
+			}
+			break;
+		case 4:
+			if (x2 <= x1)
+			{
+				if (y1 > y2 && (y1 - y2 >= x1 - x2))
+				{
+					damage = side;
+				}
+				else if (y2 > y1 && (y2 - y1 >= x1 - x2))
+				{
+					damage = side;
+				}
+				else damage = back;
+			}
+			else
+			{
+				if (y1 > y2)
+				{
+					if (y1 - y2 > x2 - x1) damage = side;
+					else damage = front;
+				}
+				else if (y1 < y2)
+				{
+					if (y2 - y1 > x2 - x1) damage = side;
+					else damage = front;
+				}
+				if (y1 == y2) damage = front;
+			}
+			break;
+		default:
+			damage = side;
+			break;
+		}
+		return damage;
+	}
 }
 
 public class MovementEventArgs : EventArgs
