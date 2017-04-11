@@ -54,13 +54,17 @@ public abstract class Skill : MonoBehaviour {
 
     public bool RB;
 
-    
+    public bool NoEvade = false;
+
+    public bool Physical;
+
+    public bool Magical;
 
     public  virtual void SkillActivator(Unit b)
     {
-        if (IsWeaponRange == true) { SkillRange = b.AttackRange; }
-        
-        
+        if (IsWeaponRange) { SkillRange = b.AttackRange; }
+        if (RB) { NoEvade = true; }
+
 
 
     }

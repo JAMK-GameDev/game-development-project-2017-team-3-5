@@ -38,7 +38,9 @@ public abstract class Unit : MonoBehaviour
     CostTypes Cost;
     //Type = DamageTypes.Heal;
     private List<Cell> aoeCellList;
-    public List<Unit> aoeUnitList;
+    private List<Unit> aoeUnitList;
+    private List<float> BlockList;
+   
 
     public Skill CurrentSkill { get; set; }
 
@@ -87,12 +89,19 @@ public abstract class Unit : MonoBehaviour
     public int AttackRange;
     public float PhysicalPower;
     public float MagicalPower;
-    public int DefenceFactor;
+    public float DefenceFactor;
 	public float RealityBreak;
 	public int ChargeTime;
 
-	//Attributes
-	public int UnitID; //Allows us to sort units...
+    //Evasion stats
+    public float BlockFront;
+    public float BlockSide;
+    public float BlockBack;
+
+    public float MagicEv;
+    
+    //Attributes
+    public int UnitID; //Allows us to sort units...
 	public int Speed = 5;
 	public int Face = 1; //Turns character between 4 different sides, North East South West.
     /// <summary>
@@ -126,7 +135,6 @@ public abstract class Unit : MonoBehaviour
     public virtual void Initialize()
     {
         Buffs = new List<Buff>();
-
         UnitState = new UnitStateNormal(this);
 
         TotalHitPoints = HitPoints;
@@ -267,7 +275,8 @@ public abstract class Unit : MonoBehaviour
         Debug.Log("stops");
         int o = UnitList.Count();
         Debug.Log(UnitList);
-
+        ImaginationPoints -= CurrentSkill.IPcost;
+        if (CurrentSkill.RB){ RealityBreak = 0; }
         for (int n = 0; n < o; ++n)
         {
             MarkAsAttacking(UnitList[n]);
@@ -299,17 +308,39 @@ public abstract class Unit : MonoBehaviour
     /// 
     protected virtual void Cast(Unit caster)
     {
-        
-        
+
+        bool evade = false;
+        float def = DefenceFactor;
         MarkAsDefending(caster);
 
-        RBGain(this, caster);
+        
 		caster.turnUnit (this.transform.position);
-    
-		//This unit takes damage from caster and checks if its front, side or backstab attack
-		HitPoints -= caster.CurrentSkill.SkillFormula(caster) * caster.getFaceModifier(this.transform.position, this.Face);
 
+        //This unit takes damage from caster and checks if its front, side or backstab attack
+        if (caster.CurrentSkill.NoEvade == false) {
+            System.Random random = new System.Random();
+            int randomNumber = random.Next(0, 100);
 
+            if (caster.CurrentSkill.Physical) {
+                if (100 - (caster.getFaceModifier(this.transform.position, this.Face)) < randomNumber) { def = def * 0.5f; Debug.Log("blocked"); } else { }
+            }
+
+            if (caster.CurrentSkill.Magical) {
+                if ((100 - MagicEv) < randomNumber) { evade = true; Debug.Log("miss"); } else { }
+            }
+        }
+
+        if (evade) {/*insert dodge animation here or something */}
+        else
+        {
+            
+            if (caster.CurrentSkill.IsHeal) { HitPoints += caster.CurrentSkill.SkillFormula(caster); }
+            else { RBGain(this, caster); HitPoints -= caster.CurrentSkill.SkillFormula(caster) * def; }
+        }
+        
+        //* caster.getFaceModifier(this.transform.position, this.Face);
+
+        //float rand = (float)(random.NextDouble() * 0.5);
 
         //This behaviour can be overridden in derived classes.
 
@@ -476,8 +507,28 @@ public abstract class Unit : MonoBehaviour
     /// </summary>
     public abstract void UnMark();
 
-	//Käännä unit kohteen suuntaan
-	public void turnUnit(Vector3 target){
+    public static List<float> BlockSort(List<float> ChanceList)
+    {
+        int count = ChanceList.Count();
+        float swap;
+        for (int c = 0; c < (count - 1); c++) //bubble sorting
+        {
+            for (int d = 0; d < count - c - 1; d++) 
+            {
+                if (ChanceList[d] > ChanceList[d + 1])
+                {
+                    swap = ChanceList[d];
+                    ChanceList[d] = ChanceList[d + 1];
+                    ChanceList[d + 1] = swap;
+                }
+            } 
+        } //end of sorting 
+
+        return ChanceList;
+    }
+
+    //Käännä unit kohteen suuntaan
+    public void turnUnit(Vector3 target){
 		float x1 = this.transform.position.x;
 		float y1 = this.transform.position.y;
 		float x2 = target.x;
@@ -488,25 +539,25 @@ public abstract class Unit : MonoBehaviour
 		{
 			if (x2 > x1 && (x2 - x1 < y2 - y1)) suunta1 = 1;
 			if (x2 < x1 && (x1 - x2 < y2 - y1)) suunta1 = 1;
-			if (x2 == x1) suunta1 = 1;
+			if (x2 == x1) suunta1 = 1; //up
 		}
 		if (x2 > x1)
 		{
 			if (y2 > y1 && (y2 - y1 < x2 - x1)) suunta1 = 2;
 			if (y2 < y1 && (y1 - y2 < x2 - x1)) suunta1 = 2;
-			if (y2 == y1) suunta1 = 2;
+			if (y2 == y1) suunta1 = 2; //right
 		}
 		if (y2 < y1)
 		{
 			if (x2 > x1 && (x2 - x1 < y1 - y2)) suunta1 = 3;
 			if (x2 < x1 && (x1 - x2 < y1 - y2)) suunta1 = 3;
-			if (x2 == x1) suunta1 = 3;
+			if (x2 == x1) suunta1 = 3; //down
 		}
 		if (x2 < x1)
 		{
 			if (y2 > y1 && (y2 - y1 < x2 - x1)) suunta1 = 4;
 			if (y2 < y1 && (y1 - y2 < x2 - x1)) suunta1 = 4;
-			if (y2 == y1) suunta1 = 4;
+			if (y2 == y1) suunta1 = 4; //left
 		}
 
 		//Jos hyökkääjän ja kohteen vertaus
@@ -519,21 +570,26 @@ public abstract class Unit : MonoBehaviour
 		this.Face = suunta1;
 	}
 
-	//This units dmg modifier against target
-	public float getFaceModifier(Vector3 target, int targetFace){
-		float damage = 9999f;
-		float front = 1.0f;
-		float side = 1.5f;
-		float back = 2.0f;
+    
 
-		float x1 = this.transform.position.x;
+    //This units dmg modifier against target
+    public float getFaceModifier(Vector3 target, int targetFace){
+		float damage = 9999f;
+        BlockList = new List<float>();
+        
+        float back = this.BlockBack; //max
+        float side = this.BlockSide;
+        float front = this.BlockFront;
+
+        float x1 = this.transform.position.x;
 		float x2 = target.x;
 		float y1 = this.transform.position.y;
 		float y2 = target.y;
 		int suunta2 = targetFace;
+        
 
-		//Kohteen suunta hyökätessä ja sen seuraukset
-		switch (suunta2)
+        //Kohteen suunta hyökätessä ja sen seuraukset
+        switch (suunta2)
 		{
 		case 1:
 			if (y1 <= y2)
@@ -651,9 +707,31 @@ public abstract class Unit : MonoBehaviour
 			damage = side;
 			break;
 		}
-		return damage;
+
+        //Here we do chance add ups and such calculations
+        float RealDamage;
+        if (damage == side) {
+        BlockList.Add(this.BlockBack); BlockList.Add(this.BlockSide);
+            BlockList = BlockSort(BlockList);
+            if (BlockList[1] == 0) { BlockList[1] = 1; }
+            RealDamage = BlockList[0] / BlockList[1];
+            RealDamage = (RealDamage - 1) * 100;
+        }
+        else if (damage == front) {
+        BlockList.Add(this.BlockBack); BlockList.Add(this.BlockSide); BlockList.Add(this.BlockFront);
+            BlockList = BlockSort(BlockList);
+            RealDamage = BlockList[0] * ((BlockList[1]/100)+1) * ((BlockList[2] / 100) + 1);
+            
+        }
+        else RealDamage = back;
+        
+
+		return RealDamage;
 	}
-}
+
+   
+
+    }
 
 public class MovementEventArgs : EventArgs
 {

@@ -111,7 +111,9 @@ public class CellGrid : MonoBehaviour
 				Units[i].UnitID = i;
 				if (Units [i].Speed == 0)
 					Units [i].Speed = 5;
-				Units[i].UnitClicked += OnUnitClicked;
+                if (Units[i].DefenceFactor == 0)
+                    Units[i].DefenceFactor = 1;
+                Units[i].UnitClicked += OnUnitClicked;
 				Units[i].UnitDestroyed += OnUnitDestroyed;
 			}
 			/*
@@ -312,7 +314,7 @@ public class CellGrid : MonoBehaviour
         {
         Debug.Log("passes if");
         CurrentUnit.CurrentSkill.SkillActivator(CurrentUnit);
-        CurrentUnit.ImaginationPoints -= CurrentUnit.CurrentSkill.IPcost;
+        
         CellGridState.OnCellAttack();
         }
         
@@ -327,7 +329,7 @@ public class CellGrid : MonoBehaviour
             Debug.Log("passes if");
 
             CurrentUnit.CurrentSkill.SkillActivator(CurrentUnit);
-            CurrentUnit.RealityBreak = 0;
+            
             CellGridState.OnCellAttack();
         } 
     }
