@@ -276,6 +276,7 @@ public abstract class Unit : MonoBehaviour
         int o = UnitList.Count();
         Debug.Log(UnitList);
         ImaginationPoints -= CurrentSkill.IPcost;
+        if (ImaginationPoints < 0) { ImaginationPoints = 0; }
         if (CurrentSkill.RB){ RealityBreak = 0; }
         for (int n = 0; n < o; ++n)
         {
@@ -333,10 +334,12 @@ public abstract class Unit : MonoBehaviour
         if (evade) {/*insert dodge animation here or something */}
         else
         {
-            
-            if (caster.CurrentSkill.IsHeal) { HitPoints += caster.CurrentSkill.SkillFormula(caster); }
+
+            if (caster.CurrentSkill.IsHeal) { HitPoints += caster.CurrentSkill.SkillFormula(caster); if (HitPoints > TotalHitPoints) { HitPoints = TotalHitPoints; } }
             else { RBGain(this, caster); HitPoints -= caster.CurrentSkill.SkillFormula(caster) * def; }
         }
+
+
         
         //* caster.getFaceModifier(this.transform.position, this.Face);
 
