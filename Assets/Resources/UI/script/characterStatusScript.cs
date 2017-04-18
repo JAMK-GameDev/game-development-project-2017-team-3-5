@@ -6,76 +6,73 @@ using UnityEngine.UI;
 public class characterStatusScript : MonoBehaviour {
 
 	public GameObject cellgrid;
-	bool current = false;
+	public List<Slider> sliders;
+	public List<Text> texts;
+	public Image charImage;
+
 	float tempHP = 0;
 	float tempIP = 0;
 	float tempRB = 0;
 	float tempCT = 0;
-    public GameObject tempSliderHP;
-    GameObject tempSliderIP;
-    GameObject tempSliderRB;
-    GameObject tempSliderCT;
-    Unit tempUnit;
-
-
-    void Start()
-    {
-        tempSliderHP = GameObject.Find("charHP");
-        tempSliderHP = GameObject.Find("charIP");
-        tempSliderHP = GameObject.Find("charRB");
-        tempSliderHP = GameObject.Find("charCT");
-        tempUnit = cellgrid.GetComponent<CellGrid>().CurrentUnit;
-    }
 
 	// Update is called once per frame
-	void Update ()
-    {
-        tempUnit = cellgrid.GetComponent<CellGrid>().CurrentUnit;
-        foreach (Transform child in transform) {
-			if (child.tag == "charname") {
-				//Change name
-				if (child.GetComponent<Text> ().text != cellgrid.GetComponent<CellGrid> ().CurrentUnit.name.ToString()) {
-					child.GetComponent<Text> ().text = cellgrid.GetComponent<CellGrid> ().CurrentUnit.name.ToString();
-					current = true;
-				}
-				//else current = false;
-			}
-			if (child.tag == "charavatar" && current) {
-				//Set Image
-			}
-			if (child.tag == "charstats" && current) {
-                //Get stats
-                //tempSliderHP = GameObject.Find("charHP").GetComponent<Slider>();
-                foreach (Transform ch in child.transform) {
-					if (ch.tag == "charHP") {
-                        //ch.GetComponent<Slider> ().maxValue = cellgrid.GetComponent<CellGrid>().CurrentUnit.TotalHitPoints;
-                        float temp = tempHP + (tempHP - tempUnit.HitPoints) * Time.deltaTime;
-                        Debug.Log("temp is " + temp);
-                        //ch.GetComponent<Slider> ().value = temp;
-					}
-					if (ch.tag == "charIP") {
-						//ch.GetComponent<Slider> ().value = cellgrid.GetComponent<CellGrid>().CurrentUnit.IP;
-					}
-					if (ch.tag == "charRB") {
-						//ch.GetComponent<Slider> ().value = tempUnit.RealityBreak;
-					}
-					if (ch.tag == "charCT") {
-						//ch.GetComponent<Slider> ().value = tempUnit.ChargeTime;
-					}
-				}
-            }
-        }
-        Debug.Log("temp is " + tempUnit.HitPoints + ", total " + tempUnit.TotalHitPoints);
-        //tempSliderHP.GetComponent<Slider>().maxValue = tempUnit.TotalHitPoints;
-        tempHP = tempHP + (tempHP - tempUnit.HitPoints) * Time.deltaTime;
-        //tempSliderHP.GetComponent<Slider>().value = tempHP;
-        (tempSliderHP.GetComponent<Slider>()).value = tempUnit.HitPoints;
-        Debug.Log("slider is " + tempSliderHP.GetComponent<Slider>().value);
-    }
+	void Update () {
+		//Turn indicator, who plays
+		texts[0].text = "Player " + cellgrid.GetComponent<CellGrid> ().CurrentUnit.PlayerNumber;
+		//Character name
+		texts[1].text = cellgrid.GetComponent<CellGrid> ().CurrentUnit.name;
+		//Character image
+		//charImage = cellgrid.GetComponent<CellGrid> ().CurrentUnit;
 
-    public void unitValue(float sliderValue)
-    {
-        tempUnit = cellgrid.GetComponent<CellGrid>().CurrentUnit;
-        sliderValue = tempUnit.HitPoints;
-    }
+		SlideHP (sliders [0], cellgrid.GetComponent<CellGrid> ().CurrentUnit.TotalHitPoints, cellgrid.GetComponent<CellGrid> ().CurrentUnit.HitPoints);
+		SlideIP (sliders [1], cellgrid.GetComponent<CellGrid> ().CurrentUnit.TotalImaginationPoints, cellgrid.GetComponent<CellGrid> ().CurrentUnit.ImaginationPoints);
+		SlideRB (sliders [2], 100f, cellgrid.GetComponent<CellGrid> ().CurrentUnit.RealityBreak);
+		SlideCT (sliders [3], 100f, cellgrid.GetComponent<CellGrid> ().CurrentUnit.ChargeTime);
+	}
+
+	//Slides the sliders based on max and current value
+	private void SlideHP(Slider temp, float max, float value){
+		if (tempHP <= max) {
+			temp.maxValue = max;
+			tempHP = tempHP + (value - tempHP) * Time.deltaTime * 3;
+			temp.value = tempHP;
+		} else {
+			temp.value = value;
+			tempHP = tempHP + (max - tempHP) * Time.deltaTime * 3;
+			temp.maxValue = tempHP;
+		}
+	}
+	private void SlideIP(Slider temp, float max, float value){
+		if (tempIP <= max) {
+			temp.maxValue = max;
+			tempIP = tempIP + (value - tempIP) * Time.deltaTime * 3;
+			temp.value = tempIP;
+		} else {
+			temp.value = value;
+			tempHP = tempHP + (max - tempHP) * Time.deltaTime * 3;
+			temp.maxValue = tempHP;
+		}
+	}
+	private void SlideRB(Slider temp, float max, float value){
+		if (tempRB <= max) {
+			temp.maxValue = max;
+			tempHP = tempRB + (value - tempRB) * Time.deltaTime * 3;
+			temp.value = tempRB;
+		} else {
+			temp.value = value;
+			tempHP = tempRB + (max - tempRB) * Time.deltaTime * 3;
+			temp.maxValue = tempRB;
+		}
+	}
+	private void SlideCT(Slider temp, float max, float value){
+		if (tempCT <= max) {
+			temp.maxValue = max;
+			tempCT = tempCT + (value - tempCT) * Time.deltaTime * 3;
+			temp.value = tempCT;
+		} else {
+			temp.value = value;
+			tempHP = tempCT + (max - tempCT) * Time.deltaTime * 3;
+			temp.maxValue = tempCT;
+		}
+	}
 }
