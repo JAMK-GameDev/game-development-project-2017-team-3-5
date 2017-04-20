@@ -531,46 +531,107 @@ public abstract class Unit : MonoBehaviour
     }
 
     //Käännä unit kohteen suuntaan
-    public void turnUnit(Vector3 target){
+	public void turnUnit(Vector3 target){
 		float x1 = this.transform.position.x;
 		float y1 = this.transform.position.y;
 		float x2 = target.x;
 		float y2 = target.y;
-		int suunta1 = this.Face;
+		int suunta1 = this.Face; // float
 
 		if (y2 > y1)
 		{
 			if (x2 > x1 && (x2 - x1 < y2 - y1)) suunta1 = 1;
-			if (x2 < x1 && (x1 - x2 < y2 - y1)) suunta1 = 1;
-			if (x2 == x1) suunta1 = 1; //up
+			else if (x2 > x1 && (x2 - x1 > y2 - y1)) suunta1 = 2;
+			else if (x2 < x1 && (x1 - x2 < y2 - y1)) suunta1 = 1;
+			else if (x2 < x1 && (x1 - x2 > y2 - y1)) suunta1 = 4;
+			else if (x2 == x1) suunta1 = 1;
 		}
-		if (x2 > x1)
+		/*if (x2 > x1)
 		{
 			if (y2 > y1 && (y2 - y1 < x2 - x1)) suunta1 = 2;
 			if (y2 < y1 && (y1 - y2 < x2 - x1)) suunta1 = 2;
-			if (y2 == y1) suunta1 = 2; //right
-		}
-		if (y2 < y1)
+			if (y2 == y1) suunta1 = 2;
+		}*/
+		else if (y2 < y1)
 		{
 			if (x2 > x1 && (x2 - x1 < y1 - y2)) suunta1 = 3;
-			if (x2 < x1 && (x1 - x2 < y1 - y2)) suunta1 = 3;
-			if (x2 == x1) suunta1 = 3; //down
+			else if (x2 > x1 && (x2 - x1 > y1 - y2)) suunta1 = 2;
+			else if (x2 < x1 && (x1 - x2 < y1 - y2)) suunta1 = 3;
+			else if (x2 < x1 && (x1 - x2 > y1 - y2)) suunta1 = 4;
+			else if (x2 == x1) suunta1 = 3;
 		}
-		if (x2 < x1)
+		else if (y2 == y1 && x2 > x1) suunta1 = 2;
+		else if (y2 == y1 && x2 < x1) suunta1 = 4;
+		/* else if (y2 > y1 && x2 > x1 && (y2 - y1 == x2 - x1)) suunta1 = 1; // Testaile
+        else if (y2 > y1 && x1 > x2 && (y2 - y1 == x1 - x2)) suunta1 = 4;//
+        else if (y2 < y1 && x2 > x1 && (y1 - y2 == x2 - x1)) suunta1 = 2;//
+        else if (y2 < y1 && x2 < x1 && (y1 - y2 == x1 - x2)) suunta1 = 3;//*/
+		else suunta1 = 1;
+
+
+
+		/*if (x2 < x1)
 		{
 			if (y2 > y1 && (y2 - y1 < x2 - x1)) suunta1 = 4;
 			if (y2 < y1 && (y1 - y2 < x2 - x1)) suunta1 = 4;
-			if (y2 == y1) suunta1 = 4; //left
+			if (y2 == y1) suunta1 = 4;
+		}*/
+
+		/*if (y2 > y1)
+		{
+			if (x2 > x1 && (x2 - x1 < y2 - y1)) suunta1 = 1;
+			if (x2 < x1 && (x1 - x2 < y2 - y1)) suunta1 = 1;
+			if (x2 == x1) suunta1 = 1;
+		}
+		/*if (x2 > x1)
+		{
+			if (y2 > y1 && (y2 - y1 < x2 - x1)) suunta1 = 2;
+			if (y2 < y1 && (y1 - y2 < x2 - x1)) suunta1 = 2;
+			if (y2 == y1) suunta1 = 2;
+		}*/
+		/*if (y2 < y1)
+		{
+			if (x2 > x1 && (x2 - x1 < y1 - y2)) suunta1 = 3;
+			if (x2 < x1 && (x1 - x2 < y1 - y2)) suunta1 = 3;
+			if (x2 == x1) suunta1 = 3;
 		}
 
-		//Jos hyökkääjän ja kohteen vertaus
-		if (x2 > x1 && y2 > y1 && (x2 - x1 == y2 - y1)) suunta1 = 1;
+		/*if (x2 < x1)
+		{
+			if (y2 > y1 && (y2 - y1 < x2 - x1)) suunta1 = 4;
+			if (y2 < y1 && (y1 - y2 < x2 - x1)) suunta1 = 4;
+			if (y2 == y1) suunta1 = 4;
+		}*/
+
+
+		//Jos hy�kk��j�n ja kohteen vertaus
+		/*if (x2 > x1 && y2 > y1 && (x2 - x1 == y2 - y1)) suunta1 = 1;
 		if (x2 > x1 && y1 > y2 && (x2 - x1 == y1 - y2)) suunta1 = 2;
 		if (x1 > x2 && y1 > y2 && (x1 - x2 == y1 - y2)) suunta1 = 3;
-		if (x1 > x2 && y2 > y1 && (x1 - x2 == y2 - y1)) suunta1 = 4;
+		if (x1 > x2 && y2 > y1 && (x1 - x2 == y2 - y1)) suunta1 = 4;*/
 
 		//Turns character now
+		switch (this.Face)
+		{
+		case 1: transform.Rotate(new Vector3(0, 0, 0)); break;
+		case 2: transform.Rotate(new Vector3(0, 0, 90f)); break;
+		case 3: transform.Rotate(new Vector3(0, 0, 180f)); break;
+		case 4: transform.Rotate(new Vector3(0, 0, 270f)); break;
+		}
+
 		this.Face = suunta1;
+		switch (suunta1)
+		{
+		case 1: transform.Rotate(new Vector3(0, 0, 0)); break;
+		case 2: transform.Rotate(new Vector3(0, 0, -90f)); break;
+		case 3: transform.Rotate(new Vector3(0, 0, -180f)); break;
+		case 4: transform.Rotate(new Vector3(0, 0, -270f)); break;
+		}
+		//transform.eulerAngles = new Vector3(0,0, 360 - 90f * (suunta1 - 1));
+		//transform.rotation.Set(0, 0, 0, 0);
+		//transform.Rotate(new Vector3(0, 0, - transform.rotation.z));
+		//transform.Rotate(new Vector3(0, 0, 360 - 90 * (suunta1 - 1)));
+		//transform.rotation.Set(0, 0, 90 * suunta1, 0);
 	}
 
     
