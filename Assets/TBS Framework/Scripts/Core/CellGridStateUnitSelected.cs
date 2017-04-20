@@ -261,7 +261,7 @@ class CellGridStateUnitSelected : CellGridState
 
 	}
 
-    public override void OnCellDeselected(Cell cell)
+    public override void OnCellDeselected(Cell cell) ///NExt time, make a method and use this in move and acts to deselect them
     {
         if (cell.GetComponent<Renderer>().material.color != Color.red) base.OnCellDeselected(cell);
 		_cellGrid.canMove = false;
