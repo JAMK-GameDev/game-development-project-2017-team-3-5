@@ -29,16 +29,17 @@ class CellGridStateUnitSelected : CellGridState
     {
         if (_unit.isMoving)
             return;
-        if(cell.IsTaken && _cellGrid.canMove && _unit.MovementPoints > 0)
-        {
-            _cellGrid.CellGridState = new CellGridStateWaitingForInput(_cellGrid);
-            _cellGrid.canMove = false;
-            return;
-        }
 
-        if (_cellsInRange.Contains(cell) && _unit.ActionPoints > 0)
-        {
+		if(cell.IsTaken && _unit.MovementPoints > 0)
+		{
+			_cellGrid.CellGridState = new CellGridStateWaitingForInput(_cellGrid);
+			//_cellGrid.canMove = false;
+			return;
+		}
 
+        if (_cellsInRange.Contains(cell) && _cellGrid.canMove && _unit.ActionPoints > 0)
+        {
+			_cellGrid.canAct = false;
             int p = 1;
             if (p == 0) { directionOne.Add(cell); AttackDirection(); }
             
@@ -57,12 +58,13 @@ class CellGridStateUnitSelected : CellGridState
             AOElist();
         }
 
-        if (!_pathsInRange.Contains(cell))
+        if (!_pathsInRange.Contains(cell) && !_cellGrid.canMove)
         {
             _cellGrid.CellGridState = new CellGridStateWaitingForInput(_cellGrid);
         }
         else
         {
+			_cellGrid.canMove = false;
             var path = _unit.FindPath(_cellGrid.Cells, cell);
             _unit.Move(cell,path);
             _cellGrid.CellGridState = new CellGridStateUnitSelected(_cellGrid, _unit);
@@ -242,11 +244,28 @@ class CellGridStateUnitSelected : CellGridState
 
     }
 
+	public override void SelectMove(){
+	
+		_pathsInRange = _unit.GetAvailableDestinations(_cellGrid.Cells);
+		var cellsNotInRange = _cellGrid.Cells.Except(_pathsInRange);
+
+		foreach (var cell in cellsNotInRange)
+		{
+			cell.UnMark();
+		}
+		foreach (var cell in _pathsInRange)
+		{
+			cell.MarkAsReachable();
+		}
+
+
+	}
 
     public override void OnCellDeselected(Cell cell)
     {
         if (cell.GetComponent<Renderer>().material.color != Color.red) base.OnCellDeselected(cell);
-
+		_cellGrid.canMove = false;
+		_cellGrid.canAct = false;
         foreach (var _cell in _pathsInRange)
         {
             _cell.MarkAsReachable();
@@ -274,17 +293,6 @@ class CellGridStateUnitSelected : CellGridState
         _unit.OnUnitSelected();
         _unitCell = _unit.Cell;
 
-        _pathsInRange = _unit.GetAvailableDestinations(_cellGrid.Cells);
-        var cellsNotInRange = _cellGrid.Cells.Except(_pathsInRange);
-
-        foreach (var cell in cellsNotInRange)
-        {
-            cell.UnMark();
-        }
-        foreach (var cell in _pathsInRange)
-        {
-            cell.MarkAsReachable();
-        }
 
         if (_unit.ActionPoints <= 0) return;
 

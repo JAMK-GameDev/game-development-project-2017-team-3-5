@@ -23,6 +23,7 @@ public class CellGrid : MonoBehaviour
 	public int UnitNumber { get; private set; }
 	public bool TurnIsActive { get; private set; }
 	public bool canMove = false;
+	public bool canAct = false;
 
     
     private CellGridState _cellGridState;//The grid delegates some of its behaviours to cellGridState object.
@@ -284,7 +285,7 @@ public class CellGrid : MonoBehaviour
 		UnitOrderCT = Units.FindAll(c => c.ChargeTime >= 100); //Makes a list of units with full CT
 		UnitNumber = UnitOrderCT.Count();
 		ClockTick();
-		canMove = false;
+
 
 		//Needs to be commented, otherwise sudden team attack ;D
         //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
@@ -292,46 +293,64 @@ public class CellGrid : MonoBehaviour
 
 	}
 	public void CanMove(){
-		canMove = true;
+		
 		//Selects current unit
-		CellGridState.OnUnitClicked(CurrentUnit);
+		if (!canAct) {
+			canMove = true;
+			CellGridState.OnUnitClicked (CurrentUnit);
+			CellGridState.SelectMove ();
+		}
+
 	}
-	public void CanAttack(){
+	public void CanAttack()
+	{
+		if (!canMove) {
+			canAct = true;
+			CellGridState.OnUnitClicked (CurrentUnit);
 
-        
-        CurrentUnit.CurrentSkill = Skills[0];
-        CurrentUnit.CurrentSkill.SkillActivator(CurrentUnit);
+			CurrentUnit.CurrentSkill = Skills [0];
+			CurrentUnit.CurrentSkill.SkillActivator (CurrentUnit);
 
-        CellGridState.OnCellAttack();
+			CellGridState.OnCellAttack ();
+		}
 
     }
 
     public void Magic()
-    {
-        Debug.Log("enters magic");
-        CurrentUnit.CurrentSkill = Skills[1];
-        if (CurrentUnit.ImaginationPoints >= CurrentUnit.CurrentSkill.IPcost)
-        {
-        Debug.Log("passes if");
-        CurrentUnit.CurrentSkill.SkillActivator(CurrentUnit);
-        
-        CellGridState.OnCellAttack();
-        }
-        
+	{
+		if (!canMove) {
+			canAct = true;
+			CellGridState.OnUnitClicked(CurrentUnit);
+
+	        Debug.Log("enters magic");
+	        CurrentUnit.CurrentSkill = Skills[1];
+	        if (CurrentUnit.ImaginationPoints >= CurrentUnit.CurrentSkill.IPcost)
+	        {
+		        Debug.Log("passes if");
+		        CurrentUnit.CurrentSkill.SkillActivator(CurrentUnit);
+		        
+		        CellGridState.OnCellAttack();
+        	}
+		}
 
     }
 
     public void RealityBreak()
     {
-        Debug.Log("enters magic");
-        CurrentUnit.CurrentSkill = Skills[2];
-        if (CurrentUnit.RealityBreak == 100) {
-            Debug.Log("passes if");
+		if (!canMove) {
+			canAct = true;
+			CellGridState.OnUnitClicked (CurrentUnit);
 
-            CurrentUnit.CurrentSkill.SkillActivator(CurrentUnit);
+			Debug.Log ("enters magic");
+			CurrentUnit.CurrentSkill = Skills [2];
+			if (CurrentUnit.RealityBreak == 100) {
+				Debug.Log ("passes if");
+
+				CurrentUnit.CurrentSkill.SkillActivator (CurrentUnit);
             
-            CellGridState.OnCellAttack();
-        } 
+				CellGridState.OnCellAttack ();
+			} 
+		}
     }
 
 }

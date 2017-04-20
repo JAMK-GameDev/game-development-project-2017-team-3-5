@@ -15,6 +15,10 @@ public abstract class CellGridState
 
     public virtual void AttackSelector(Unit i) { }
 
+	public virtual void SelectMove(){
+
+
+	}
 
     public virtual void OnCellDeselected(Cell cell)
     {
