@@ -22,7 +22,7 @@ public abstract class Unit : MonoBehaviour
         u.DefenceFactor
     }
     */
-
+	/* Demo tutorial about skills, not in use ;( - Juha-Matti
     float Totalvalue;
     float TicksPerSecond, tickStartTime, tickTotalTime;
     
@@ -34,15 +34,20 @@ public abstract class Unit : MonoBehaviour
     {
         Hitpoints, ImaginationPoints, ChargingTime, RealityBreak
     }
+
     DamageTypes Type;
     CostTypes Cost;
+	*/
+
     //Type = DamageTypes.Heal;
     private List<Cell> aoeCellList;
     private List<Unit> aoeUnitList;
     private List<float> BlockList;
    
-
-    public Skill CurrentSkill { get; set; }
+	public Class UnitClass;
+	public Skill PrimarySkill;
+	public Skill SecondarySkill;
+	public Skill CurrentSkill { get; set; }
 
     /// <summary>
     /// UnitClicked event is invoked when user clicks the unit. It requires a collider on the unit game object to work.
@@ -289,7 +294,6 @@ public abstract class Unit : MonoBehaviour
         }
 
         ActionPoints--;
-        
     }
     private void CastSkill(Cell c)
     {
@@ -530,7 +534,7 @@ public abstract class Unit : MonoBehaviour
         return ChanceList;
     }
 
-    //Käännä unit kohteen suuntaan
+    ///Käännä unit kohteen suuntaan
 	public void turnUnit(Vector3 target){
 		float x1 = this.transform.position.x;
 		float y1 = this.transform.position.y;
