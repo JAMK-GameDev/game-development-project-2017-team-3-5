@@ -1,0 +1,2408 @@
+fileFormatVersion: 2
+guid: 490d33147c3ad9244804710b49d5e6d8
+timeCreated: 1492767510
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Body
+    100004: Chest
+    100006: Foot L
+    100008: Foot R
+    100010: Foot Roll L
+    100012: Foot Roll R
+    100014: Hand L
+    100016: Hand R
+    100018: Head
+    100020: Head_end
+    100022: //RootNode
+    100024: Leg Control L
+    100026: Leg Control R
+    100028: Leg IK L
+    100030: Leg IK L_end
+    100032: Leg IK R
+    100034: Leg IK R_end
+    100036: Leg Rotaion L
+    100038: Leg Rotaion L_end
+    100040: Leg Rotaion R
+    100042: Leg Rotaion R_end
+    100044: Lower Arm L
+    100046: Lower Arm R
+    100048: Lower Finger L
+    100050: Lower Finger L_end
+    100052: Lower Finger R
+    100054: Lower Finger R_end
+    100056: Lower Leg L
+    100058: Lower Leg L_end
+    100060: Lower Leg R
+    100062: Lower Leg R_end
+    100064: Neck
+    100066: Root
+    100068: Thumb L
+    100070: Thumb L_end
+    100072: Thumb R
+    100074: Thumb R_end
+    100076: Toe  L
+    100078: Toe  L_end
+    100080: Toe  R
+    100082: Toe  R_end
+    100084: Toe Control L
+    100086: Toe Control L_end
+    100088: Toe Control R
+    100090: Toe Control R_end
+    100092: Torso
+    100094: Upper Arm L
+    100096: Upper Arm R
+    100098: Upper Finger L
+    100100: Upper Finger R
+    100102: Upper Leg L
+    100104: Upper Leg R
+    400000: Armature
+    400002: Body
+    400004: Chest
+    400006: Foot L
+    400008: Foot R
+    400010: Foot Roll L
+    400012: Foot Roll R
+    400014: Hand L
+    400016: Hand R
+    400018: Head
+    400020: Head_end
+    400022: //RootNode
+    400024: Leg Control L
+    400026: Leg Control R
+    400028: Leg IK L
+    400030: Leg IK L_end
+    400032: Leg IK R
+    400034: Leg IK R_end
+    400036: Leg Rotaion L
+    400038: Leg Rotaion L_end
+    400040: Leg Rotaion R
+    400042: Leg Rotaion R_end
+    400044: Lower Arm L
+    400046: Lower Arm R
+    400048: Lower Finger L
+    400050: Lower Finger L_end
+    400052: Lower Finger R
+    400054: Lower Finger R_end
+    400056: Lower Leg L
+    400058: Lower Leg L_end
+    400060: Lower Leg R
+    400062: Lower Leg R_end
+    400064: Neck
+    400066: Root
+    400068: Thumb L
+    400070: Thumb L_end
+    400072: Thumb R
+    400074: Thumb R_end
+    400076: Toe  L
+    400078: Toe  L_end
+    400080: Toe  R
+    400082: Toe  R_end
+    400084: Toe Control L
+    400086: Toe Control L_end
+    400088: Toe Control R
+    400090: Toe Control R_end
+    400092: Torso
+    400094: Upper Arm L
+    400096: Upper Arm R
+    400098: Upper Finger L
+    400100: Upper Finger R
+    400102: Upper Leg L
+    400104: Upper Leg R
+    4300000: Body
+    7400000: Armature|Action.001
+    7400002: Armature|ArmatureAction
+    7400004: Armature|attack
+    7400006: Armature|block
+    7400008: Armature|cast
+    7400010: Armature|default
+    7400012: Armature|evade
+    7400014: Armature|hurt
+    7400016: Armature|idle
+    7400018: Armature|victory
+    7400020: Armature|walk
+    7400022: Armature|walk_blocking
+    7400024: Armature|wlak_blocking
+    7400026: Body|Action.001
+    7400028: Body|walk
+    7400030: Body|wlak_blocking
+    9500000: //RootNode
+    13700000: Body
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|Action.001
+      takeName: Armature|Action.001
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|ArmatureAction
+      takeName: Armature|ArmatureAction
+      firstFrame: 0
+      lastFrame: 31
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|attack
+      takeName: Armature|attack
+      firstFrame: 0
+      lastFrame: 43
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|block
+      takeName: Armature|block
+      firstFrame: 0
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|cast
+      takeName: Armature|cast
+      firstFrame: 0
+      lastFrame: 84
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|default
+      takeName: Armature|default
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|evade
+      takeName: Armature|evade
+      firstFrame: 0
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|hurt
+      takeName: Armature|hurt
+      firstFrame: 0
+      lastFrame: 62
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|idle
+      takeName: Armature|idle
+      firstFrame: 0
+      lastFrame: 169
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|victory
+      takeName: Armature|victory
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|walk
+      takeName: Armature|walk
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|walk_blocking
+      takeName: Armature|walk_blocking
+      firstFrame: 0
+      lastFrame: 31
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|wlak_blocking
+      takeName: Armature|wlak_blocking
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Body|Action.001
+      takeName: Body|Action.001
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Body|walk
+      takeName: Body|walk
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Body|wlak_blocking
+      takeName: Body|wlak_blocking
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Chest
+        weight: 1
+      - path: Armature/Root/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Thumb L/Thumb L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm L/Lower Arm L/Hand L/Upper Finger L/Lower
+          Finger L/Lower Finger L_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Thumb R/Thumb R_end
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R
+        weight: 1
+      - path: Armature/Root/Chest/Upper Arm R/Lower Arm R/Hand R/Upper Finger R/Lower
+          Finger R/Lower Finger R_end
+        weight: 1
+      - path: Armature/Root/Leg Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot L/Toe  L/Toe  L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Foot Roll L/Leg IK L/Leg IK L_end
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L
+        weight: 1
+      - path: Armature/Root/Leg Control L/Toe Control L/Toe Control L_end
+        weight: 1
+      - path: Armature/Root/Leg Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot R/Toe  R/Toe  R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Foot Roll R/Leg IK R/Leg IK R_end
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R
+        weight: 1
+      - path: Armature/Root/Leg Control R/Toe Control R/Toe Control R_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L
+        weight: 1
+      - path: Armature/Root/Leg Rotaion L/Leg Rotaion L_end
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R
+        weight: 1
+      - path: Armature/Root/Leg Rotaion R/Leg Rotaion R_end
+        weight: 1
+      - path: Armature/Root/Torso
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg L/Lower Leg L/Lower Leg L_end
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R
+        weight: 1
+      - path: Armature/Root/Torso/Upper Leg R/Lower Leg R/Lower Leg R_end
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
