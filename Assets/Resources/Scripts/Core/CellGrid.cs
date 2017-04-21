@@ -24,7 +24,6 @@ public class CellGrid : MonoBehaviour
 	public bool TurnIsActive { get; private set; }
 	public bool canMove = false;
 	public bool canAct = false;
-
     
     private CellGridState _cellGridState;//The grid delegates some of its behaviours to cellGridState object.
     public CellGridState CellGridState
@@ -63,7 +62,6 @@ public class CellGrid : MonoBehaviour
 
     void Start()
     {
-        
         Players = new List<Player>();
         for (int i = 0; i < PlayersParent.childCount; i++)
         {
@@ -196,15 +194,17 @@ public class CellGrid : MonoBehaviour
 		if (ActiveTurnStart != null) ActiveTurnStart.Invoke(this, new EventArgs());
 		
 		TurnIsActive = true; //NOTE: Not in use right now...
-		CurrentUnit = a;
+        if(CurrentUnit != null) CurrentUnit.GetComponent<Animator>().SetBool("walk", false);
+        CurrentUnit = a;
         
 		CurrentPlayerNumber = a.PlayerNumber;
 		Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart2(); });
 		a.OnTurnStart();
 		Players.Find(p => p.PlayerNumber.Equals(a.PlayerNumber)).Play(this);
 		print ("Left Active turn");
+        CurrentUnit.GetComponent<Animator>().SetBool("walk", true);
 
-	}
+    }
 	public void ClockTick() {
 		if (ClockTickActive != null)
 			ClockTickActive.Invoke (this, new EventArgs ());
@@ -268,7 +268,7 @@ public class CellGrid : MonoBehaviour
         CellGridState = new CellGridStateTurnChanging(this);
 
         Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnEnd(); });
-		/*
+        /*
         CurrentPlayerNumber = (CurrentPlayerNumber + 1) % NumberOfPlayers;
         while (Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).Count == 0)
         {
@@ -276,7 +276,10 @@ public class CellGrid : MonoBehaviour
         }//Skipping players that are defeated.
 		*/
         if (TurnEnded != null)
+        {
+            CurrentUnit.GetComponent<Animator>().SetBool("walk",false);
             TurnEnded.Invoke(this, new EventArgs());
+        }
 
 		CurrentUnit.ChargeTime = 0;
 		if (CurrentUnit.ActionPoints != 0) { CurrentUnit.ChargeTime += 20; }
@@ -290,6 +293,8 @@ public class CellGrid : MonoBehaviour
 		//Needs to be commented, otherwise sudden team attack ;D
         //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
         //Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);     
+
+
 
 	}
 	public void CanMove(){
@@ -311,8 +316,8 @@ public class CellGrid : MonoBehaviour
 			CurrentUnit.CurrentSkill = Skills [0];
 			CurrentUnit.CurrentSkill.SkillActivator (CurrentUnit);
 
-			CellGridState.OnCellAttack ();
-		}
+            CellGridState.OnCellAttack ();
+        }
 
     }
 
@@ -328,7 +333,7 @@ public class CellGrid : MonoBehaviour
 	        {
 		        Debug.Log("passes if");
 		        CurrentUnit.CurrentSkill.SkillActivator(CurrentUnit);
-		        
+                CurrentUnit.GetComponent<Animator>().SetTrigger("cast");
 		        CellGridState.OnCellAttack();
         	}
 		}
