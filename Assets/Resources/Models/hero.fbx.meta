@@ -58,6 +58,7 @@ ModelImporter:
     100100: Upper Finger R
     100102: Upper Leg L
     100104: Upper Leg R
+    100106: Camera
     400000: Armature
     400002: Body
     400004: Chest
@@ -111,6 +112,7 @@ ModelImporter:
     400100: Upper Finger R
     400102: Upper Leg L
     400104: Upper Leg R
+    400106: Camera
     4300000: Body
     7400000: Armature|Action.001
     7400002: Armature|ArmatureAction

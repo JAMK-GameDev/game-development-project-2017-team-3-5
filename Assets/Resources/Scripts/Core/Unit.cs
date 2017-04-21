@@ -22,7 +22,7 @@ public abstract class Unit : MonoBehaviour
         u.DefenceFactor
     }
     */
-	/* Demo tutorial about skills, not in use ;( - Juha-Matti
+    /* Demo tutorial about skills, not in use ;( - Juha-Matti
     float Totalvalue;
     float TicksPerSecond, tickStartTime, tickTotalTime;
     
@@ -188,6 +188,7 @@ public abstract class Unit : MonoBehaviour
     /// </summary>
     public virtual void OnTurnEnd()
     {
+
         Buffs.FindAll(b => b.Duration == 0).ForEach(b => { b.Undo(this); });
         Buffs.RemoveAll(b => b.Duration == 0);
         Buffs.ForEach(b => { b.Duration--; });
@@ -327,19 +328,30 @@ public abstract class Unit : MonoBehaviour
             int randomNumber = random.Next(0, 100);
 
             if (caster.CurrentSkill.Physical) {
-                if (100 - (caster.getFaceModifier(this.transform.position, this.Face)) < randomNumber) { def = def * 0.5f; Debug.Log("blocked"); } else { }
+                if (100 - (caster.getFaceModifier(this.transform.position, this.Face)) < randomNumber) {
+                    def = def * 0.5f; Debug.Log("blocked"); 
+                    //block anmation
+                    this.GetComponent<Animator>().SetTrigger("block");
+                } else { }
             }
 
             if (caster.CurrentSkill.Magical) {
-                if ((100 - MagicEv) < randomNumber) { evade = true; Debug.Log("miss"); } else { }
+                if ((100 - MagicEv) < randomNumber) { evade = true; Debug.Log("miss");
+                    //magic evasion here
+                    this.GetComponent<Animator>().SetTrigger("evade");
+                } else { }
             }
         }
 
-        if (evade) {/*insert dodge animation here or something */}
+        if (evade) {/*empty*/}
         else
         {
 
-            if (caster.CurrentSkill.IsHeal) { HitPoints += caster.CurrentSkill.SkillFormula(caster); if (HitPoints > TotalHitPoints) { HitPoints = TotalHitPoints; } }
+            if (caster.CurrentSkill.IsHeal) {
+                HitPoints += caster.CurrentSkill.SkillFormula(caster);
+                if (HitPoints > TotalHitPoints) { HitPoints = TotalHitPoints;
+                }
+            }
             else { RBGain(this, caster); HitPoints -= caster.CurrentSkill.SkillFormula(caster) * def; }
         }
 

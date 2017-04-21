@@ -11,8 +11,6 @@ public class MyUnit : Unit
 
     private Transform Highlighter;
 
-    private Animator anim;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -27,12 +25,11 @@ public class MyUnit : Unit
         }     
         gameObject.transform.position = Cell.transform.position + new Vector3(0, 0, -1.5f);
 
-        anim = GetComponent<Animator>();
     }
 
     protected override void Cast(Unit other)
     {
-        anim.SetTrigger("cast");
+        GetComponent<Animator>().SetTrigger("cast");
         base.Cast(other);
         UpdateHpBar();
     }
@@ -44,7 +41,7 @@ public class MyUnit : Unit
 
     public override void MarkAsAttacking(Unit other)
     {
-        anim.SetTrigger("attack");
+        GetComponent<Animator>().SetTrigger("attack");
         StartCoroutine(Jerk(other));
     }
     public override void MarkAsDefending(Unit other)
