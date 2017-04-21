@@ -11,6 +11,8 @@ public class SampleUnit : Unit
     }
     public override void MarkAsAttacking(Unit other)
     {      
+        //Trigger attack animation
+        GetComponent<Animator>().SetTrigger("attack");
     }
 
     public override void MarkAsDefending(Unit other)

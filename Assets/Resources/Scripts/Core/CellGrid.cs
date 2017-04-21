@@ -169,7 +169,17 @@ public class CellGrid : MonoBehaviour
         var totalPlayersAlive = Units.Select(u => u.PlayerNumber).Distinct().ToList(); //Checking if the game is over
         if (totalPlayersAlive.Count == 1)
         {
-            if(GameEnded != null)
+            //Trigger victory animation
+            Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => {
+                u.GetComponentInParent<Animator>().SetTrigger("victory");
+            });
+            /*
+            List<Unit> units = Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber));
+            units.ForEach(u => {
+                u.GetComponentInParent<Animator>().SetTrigger("victory");
+            });
+            */
+            if (GameEnded != null)
                 GameEnded.Invoke(this, new EventArgs());
         }
     }

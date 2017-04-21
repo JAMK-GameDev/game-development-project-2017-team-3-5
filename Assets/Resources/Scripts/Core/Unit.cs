@@ -326,20 +326,23 @@ public abstract class Unit : MonoBehaviour
         if (caster.CurrentSkill.NoEvade == false) {
             System.Random random = new System.Random();
             int randomNumber = random.Next(0, 100);
-
             if (caster.CurrentSkill.Physical) {
                 if (100 - (caster.getFaceModifier(this.transform.position, this.Face)) < randomNumber) {
                     def = def * 0.5f; Debug.Log("blocked"); 
                     //block anmation
                     this.GetComponent<Animator>().SetTrigger("block");
-                } else { }
+                } else {
+                    this.GetComponent<Animator>().SetTrigger("hurt");
+                }
             }
 
             if (caster.CurrentSkill.Magical) {
                 if ((100 - MagicEv) < randomNumber) { evade = true; Debug.Log("miss");
                     //magic evasion here
                     this.GetComponent<Animator>().SetTrigger("evade");
-                } else { }
+                } else {
+                    this.GetComponent<Animator>().SetTrigger("hurt");
+                }
             }
         }
 

@@ -29,7 +29,6 @@ public class MyUnit : Unit
 
     protected override void Cast(Unit other)
     {
-        GetComponent<Animator>().SetTrigger("cast");
         base.Cast(other);
         UpdateHpBar();
     }
@@ -41,7 +40,6 @@ public class MyUnit : Unit
 
     public override void MarkAsAttacking(Unit other)
     {
-        GetComponent<Animator>().SetTrigger("attack");
         StartCoroutine(Jerk(other));
     }
     public override void MarkAsDefending(Unit other)
