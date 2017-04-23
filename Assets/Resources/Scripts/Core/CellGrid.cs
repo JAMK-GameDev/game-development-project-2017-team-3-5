@@ -60,6 +60,9 @@ public class CellGrid : MonoBehaviour
     public List<Unit> Units { get; private set; }
     public List<Skill> Skills { get; private set; }
 
+    //Animator variable
+    public Animator modelAnim;
+
     void Start()
     {
         Players = new List<Player>();
@@ -169,18 +172,14 @@ public class CellGrid : MonoBehaviour
         var totalPlayersAlive = Units.Select(u => u.PlayerNumber).Distinct().ToList(); //Checking if the game is over
         if (totalPlayersAlive.Count == 1)
         {
-            //Trigger victory animation
-            Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => {
-                u.GetComponentInParent<Animator>().SetTrigger("victory");
-            });
-            /*
-            List<Unit> units = Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber));
-            units.ForEach(u => {
-                u.GetComponentInParent<Animator>().SetTrigger("victory");
-            });
-            */
-            if (GameEnded != null)
+            if(GameEnded != null) {
+                //Trigger victory animation
+                Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => {
+                    u.transform.Find("hero").gameObject.GetComponent<Animator>().SetTrigger("victory");
+                });
+
                 GameEnded.Invoke(this, new EventArgs());
+            }
         }
     }
     
@@ -204,7 +203,12 @@ public class CellGrid : MonoBehaviour
 		if (ActiveTurnStart != null) ActiveTurnStart.Invoke(this, new EventArgs());
 		
 		TurnIsActive = true; //NOTE: Not in use right now...
-        if(CurrentUnit != null) CurrentUnit.GetComponent<Animator>().SetBool("walk", false);
+
+        if(CurrentUnit != null) {
+            //Stop walking animation
+            modelAnim.SetBool("walk", false);
+        }
+
         CurrentUnit = a;
         
 		CurrentPlayerNumber = a.PlayerNumber;
@@ -212,7 +216,11 @@ public class CellGrid : MonoBehaviour
 		a.OnTurnStart();
 		Players.Find(p => p.PlayerNumber.Equals(a.PlayerNumber)).Play(this);
 		print ("Left Active turn");
-        CurrentUnit.GetComponent<Animator>().SetBool("walk", true);
+
+        //Update animator
+        modelAnim = CurrentUnit.transform.Find("hero").gameObject.GetComponent<Animator>();
+        //Start walking animation
+        modelAnim.SetBool("walk", true);
 
     }
 	public void ClockTick() {
@@ -287,7 +295,7 @@ public class CellGrid : MonoBehaviour
 		*/
         if (TurnEnded != null)
         {
-            CurrentUnit.GetComponent<Animator>().SetBool("walk",false);
+            modelAnim.SetBool("walk",false);
             TurnEnded.Invoke(this, new EventArgs());
         }
 
@@ -343,7 +351,6 @@ public class CellGrid : MonoBehaviour
 	        {
 		        Debug.Log("passes if");
 		        CurrentUnit.CurrentSkill.SkillActivator(CurrentUnit);
-                CurrentUnit.GetComponent<Animator>().SetTrigger("cast");
 		        CellGridState.OnCellAttack();
         	}
 		}

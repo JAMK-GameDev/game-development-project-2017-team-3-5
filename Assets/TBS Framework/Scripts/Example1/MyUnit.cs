@@ -24,7 +24,6 @@ public class MyUnit : Unit
                 Destroy(cubeTransform.GetComponent<BoxCollider>());
         }     
         gameObject.transform.position = Cell.transform.position + new Vector3(0, 0, -1.5f);
-
     }
 
     protected override void Cast(Unit other)
