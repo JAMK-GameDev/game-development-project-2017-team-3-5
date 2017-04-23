@@ -331,34 +331,21 @@ public abstract class Unit : MonoBehaviour
             if (caster.CurrentSkill.Physical) {
                 if (100 - (caster.getFaceModifier(this.transform.position, this.Face)) < randomNumber) {
                     def = def * 0.5f; Debug.Log("blocked"); 
-<<<<<<< HEAD
                     //block animation
                     modelAnim.SetTrigger("block");
                 } else {
                     //hurt animation
                     modelAnim.SetTrigger("hurt");
-=======
-                    //block anmation
-                    this.GetComponent<Animator>().SetTrigger("block");
-                } else {
-                    this.GetComponent<Animator>().SetTrigger("hurt");
->>>>>>> master
                 }
             }
 
             if (caster.CurrentSkill.Magical) {
                 if ((100 - MagicEv) < randomNumber) { evade = true; Debug.Log("miss");
                     //magic evasion here
-<<<<<<< HEAD
                     modelAnim.SetTrigger("evade");
                 } else {
                     //block animation
                     modelAnim.SetTrigger("hurt");
-=======
-                    this.GetComponent<Animator>().SetTrigger("evade");
-                } else {
-                    this.GetComponent<Animator>().SetTrigger("hurt");
->>>>>>> master
                 }
             }
         }
