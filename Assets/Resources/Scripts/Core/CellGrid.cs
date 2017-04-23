@@ -60,6 +60,9 @@ public class CellGrid : MonoBehaviour
     public List<Unit> Units { get; private set; }
     public List<Skill> Skills { get; private set; }
 
+    //Animator variable
+    public Animator modelAnim;
+
     void Start()
     {
         Players = new List<Player>();
@@ -194,7 +197,12 @@ public class CellGrid : MonoBehaviour
 		if (ActiveTurnStart != null) ActiveTurnStart.Invoke(this, new EventArgs());
 		
 		TurnIsActive = true; //NOTE: Not in use right now...
-        if(CurrentUnit != null) CurrentUnit.GetComponent<Animator>().SetBool("walk", false);
+
+        if(CurrentUnit != null) {
+            //Stop walking animation
+            modelAnim.SetBool("walk", false);
+        }
+
         CurrentUnit = a;
         
 		CurrentPlayerNumber = a.PlayerNumber;
@@ -202,7 +210,11 @@ public class CellGrid : MonoBehaviour
 		a.OnTurnStart();
 		Players.Find(p => p.PlayerNumber.Equals(a.PlayerNumber)).Play(this);
 		print ("Left Active turn");
-        CurrentUnit.GetComponent<Animator>().SetBool("walk", true);
+
+        //Update animator
+        modelAnim = CurrentUnit.transform.Find("hero").gameObject.GetComponent<Animator>();
+        //Start walking animation
+        modelAnim.SetBool("walk", true);
 
     }
 	public void ClockTick() {
