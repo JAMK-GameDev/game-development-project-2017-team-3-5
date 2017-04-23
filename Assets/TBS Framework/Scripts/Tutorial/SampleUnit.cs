@@ -12,7 +12,11 @@ public class SampleUnit : Unit
     public override void MarkAsAttacking(Unit other)
     {      
         //Trigger attack animation
+<<<<<<< HEAD
         transform.Find("hero").gameObject.GetComponent<Animator>().SetTrigger("attack");
+=======
+        GetComponent<Animator>().SetTrigger("attack");
+>>>>>>> master
     }
 
     public override void MarkAsDefending(Unit other)
