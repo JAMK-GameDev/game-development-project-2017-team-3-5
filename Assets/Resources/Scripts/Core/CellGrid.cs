@@ -289,7 +289,7 @@ public class CellGrid : MonoBehaviour
 		*/
         if (TurnEnded != null)
         {
-            CurrentUnit.GetComponent<Animator>().SetBool("walk",false);
+            modelAnim.SetBool("walk",false);
             TurnEnded.Invoke(this, new EventArgs());
         }
 
@@ -345,7 +345,6 @@ public class CellGrid : MonoBehaviour
 	        {
 		        Debug.Log("passes if");
 		        CurrentUnit.CurrentSkill.SkillActivator(CurrentUnit);
-                CurrentUnit.GetComponent<Animator>().SetTrigger("cast");
 		        CellGridState.OnCellAttack();
         	}
 		}

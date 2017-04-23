@@ -319,6 +319,8 @@ public abstract class Unit : MonoBehaviour
         float def = DefenceFactor;
         MarkAsDefending(caster);
 
+        //Init target Animator
+        Animator modelAnim = this.transform.Find("hero").gameObject.GetComponent<Animator>();
         
 		caster.turnUnit (this.transform.position);
 
@@ -330,16 +332,22 @@ public abstract class Unit : MonoBehaviour
             if (caster.CurrentSkill.Physical) {
                 if (100 - (caster.getFaceModifier(this.transform.position, this.Face)) < randomNumber) {
                     def = def * 0.5f; Debug.Log("blocked"); 
-                    //block anmation
-                    this.GetComponent<Animator>().SetTrigger("block");
-                } else { }
+                    //block animation
+                    modelAnim.SetTrigger("block");
+                } else {
+                    //hurt animation
+                    modelAnim.SetTrigger("hurt");
+                }
             }
 
             if (caster.CurrentSkill.Magical) {
                 if ((100 - MagicEv) < randomNumber) { evade = true; Debug.Log("miss");
                     //magic evasion here
-                    this.GetComponent<Animator>().SetTrigger("evade");
-                } else { }
+                    modelAnim.SetTrigger("evade");
+                } else {
+                    //block animation
+                    modelAnim.SetTrigger("hurt");
+                }
             }
         }
 
