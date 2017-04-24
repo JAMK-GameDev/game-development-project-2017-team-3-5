@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Class : MonoBehaviour {
+	public GameObject Avatar;
 
 	//Modifiers for scaling per skill point
 	public float HP;

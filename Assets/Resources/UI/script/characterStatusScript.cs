@@ -8,7 +8,7 @@ public class characterStatusScript : MonoBehaviour {
 	public GameObject cellgrid;
 	public List<Slider> sliders;
 	public List<Text> texts;
-	public Image charImage;
+	public GameObject charImage;
 
 	float tempHP = 0;
 	float tempIP = 0;
@@ -22,7 +22,16 @@ public class characterStatusScript : MonoBehaviour {
 		//Character name
 		texts[1].text = cellgrid.GetComponent<CellGrid> ().CurrentUnit.name;
 		//Character image
-		//charImage = cellgrid.GetComponent<CellGrid> ().CurrentUnit;
+		Debug.Log ("HEllo??");
+
+		if (charImage != cellgrid.GetComponent<CellGrid> ().CurrentUnit.UnitClass.Avatar) {
+			Debug.Log ("HEllo");
+			if(charImage.activeInHierarchy) charImage.SetActive (false);
+			charImage = cellgrid.GetComponent<CellGrid> ().CurrentUnit.UnitClass.Avatar;
+			//charImage.SetActive (true);
+		}
+		if (!charImage.activeInHierarchy)
+			charImage.SetActive (true);
 
 		SlideHP (sliders [0], cellgrid.GetComponent<CellGrid> ().CurrentUnit.TotalHitPoints, cellgrid.GetComponent<CellGrid> ().CurrentUnit.HitPoints);
 		SlideIP (sliders [1], cellgrid.GetComponent<CellGrid> ().CurrentUnit.TotalImaginationPoints, cellgrid.GetComponent<CellGrid> ().CurrentUnit.ImaginationPoints);

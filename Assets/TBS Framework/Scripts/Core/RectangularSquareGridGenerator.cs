@@ -26,15 +26,17 @@ public class RectangularSquareGridGenerator : ICellGridGenerator
         {
             for (int j = 0; j < Height; j++)
             {
-                var square = Instantiate(SquarePrefab);
+				var square = Instantiate(SquarePrefab);
+				square.transform.parent = CellsParent;
                 var squareSize = square.GetComponent<Cell>().GetCellDimensions();
 
-                square.transform.position = new Vector3(i*squareSize.x,j*squareSize.y,0);
+				square.transform.localPosition = new Vector3(i*squareSize.x,j*squareSize.y,0);
+				square.transform.localScale = SquarePrefab.transform.localScale;
+				square.transform.Translate( new Vector3(CellsParent.transform.localPosition.x, CellsParent.transform.localPosition.y, 0));
                 square.GetComponent<Cell>().OffsetCoord = new Vector2(i,j);
                 square.GetComponent<Cell>().MovementCost = 1;
                 ret.Add(square.GetComponent<Cell>());
 
-                square.transform.parent = CellsParent;
             }
         }
         return ret;
