@@ -22,10 +22,10 @@ public class characterStatusScript : MonoBehaviour {
 		//Character name
 		texts[1].text = cellgrid.GetComponent<CellGrid> ().CurrentUnit.name;
 		//Character image
-		Debug.Log ("HEllo??");
+		//Debug.Log ("HEllo??");
 
 		if (charImage != cellgrid.GetComponent<CellGrid> ().CurrentUnit.UnitClass.Avatar) {
-			Debug.Log ("HEllo");
+			//Debug.Log ("HEllo");
 			if(charImage.activeInHierarchy) charImage.SetActive (false);
 			charImage = cellgrid.GetComponent<CellGrid> ().CurrentUnit.UnitClass.Avatar;
 			//charImage.SetActive (true);

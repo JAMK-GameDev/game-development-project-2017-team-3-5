@@ -167,20 +167,32 @@ public class CellGrid : MonoBehaviour
 		CellGridState.OnUnitClicked(sender as Unit);
     }
     private void OnUnitDestroyed(object sender, AttackEventArgs e)
-    {
-        Units.Remove(sender as Unit);
+	{
+		(sender as Unit).gameObject.SetActive (false);
+		Units.Remove(sender as Unit);
         var totalPlayersAlive = Units.Select(u => u.PlayerNumber).Distinct().ToList(); //Checking if the game is over
+        //Check if game is ended
         if (totalPlayersAlive.Count == 1)
         {
-            if(GameEnded != null) {
-                //Trigger victory animation
-                Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => {
-                    u.transform.Find("hero").gameObject.GetComponent<Animator>().SetTrigger("victory");
-                });
+            //Diasable walking anim
+            modelAnim.SetBool("walk", false);
 
+            //Clear all menu
+            GameObject.Find("characterStatus").GetComponent<Animator>().SetBool("isEnable",false);
+            GameObject.Find("attackAction").GetComponent<Animator>().SetBool("isEnable", false);
+            GameObject.Find("mainAction").GetComponent<Animator>().SetBool("isEnable", false);
+
+            Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => {
+                //Trigger victory anim
+                u.transform.Find("hero").gameObject.GetComponent<Animator>().SetTrigger("victory");
+            });
+            //Trigger victory scene
+            GameObject.Find("victoryScene").GetComponent<Animator>().SetTrigger("victory");
+
+            if (GameEnded != null) {
                 GameEnded.Invoke(this, new EventArgs());
             }
-        }
+		}
     }
     
     /// <summary>
