@@ -319,8 +319,9 @@ public abstract class Unit : MonoBehaviour
         float def = DefenceFactor;
         MarkAsDefending(caster);
 
-        //Init target Animator
-        Animator modelAnim = this.transform.Find("hero").gameObject.GetComponent<Animator>();
+		//Init target Animator
+		Animator casterAnim = caster.transform.Find("hero").gameObject.GetComponent<Animator>();
+		Animator modelAnim = this.transform.Find("hero").gameObject.GetComponent<Animator>();
         
 		caster.turnUnit (this.transform.position);
 
@@ -329,6 +330,7 @@ public abstract class Unit : MonoBehaviour
             System.Random random = new System.Random();
             int randomNumber = random.Next(0, 100);
             if (caster.CurrentSkill.Physical) {
+				casterAnim.SetTrigger("attack");
                 if (100 - (caster.getFaceModifier(this.transform.position, this.Face)) < randomNumber) {
                     def = def * 0.5f; Debug.Log("blocked"); 
                     //block animation
@@ -339,7 +341,8 @@ public abstract class Unit : MonoBehaviour
                 }
             }
 
-            if (caster.CurrentSkill.Magical) {
+			if (caster.CurrentSkill.Magical) {
+				casterAnim.SetTrigger("cast");
                 if ((100 - MagicEv) < randomNumber) { evade = true; Debug.Log("miss");
                     //magic evasion here
                     modelAnim.SetTrigger("evade");
@@ -354,10 +357,14 @@ public abstract class Unit : MonoBehaviour
         else
         {
 
-            if (caster.CurrentSkill.IsHeal) {
+			if (caster.CurrentSkill.IsHeal) {
+				casterAnim.SetTrigger("cast");
                 HitPoints += caster.CurrentSkill.SkillFormula(caster);
-                if (HitPoints > TotalHitPoints) { HitPoints = TotalHitPoints;
-                }
+                if (HitPoints > TotalHitPoints) {
+					HitPoints = TotalHitPoints;
+				}
+				//Dont have healed animation right now
+				modelAnim.SetTrigger("victory");
             }
             else { RBGain(this, caster); HitPoints -= caster.CurrentSkill.SkillFormula(caster) * def; }
         }
