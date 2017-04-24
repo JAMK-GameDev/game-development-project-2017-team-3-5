@@ -304,8 +304,13 @@ public abstract class Unit : MonoBehaviour
        
     }
     
-
-
+	///Create Damage value visible
+	void DamageShow(string value){
+		Debug.Log ("Damage! " + value);
+		this.transform.Find("DamageText").gameObject.GetComponent<TextMesh>().text = value;
+		this.transform.Find("DamageText").position = new Vector3(this.transform.position.x, this.transform.position.y + 1f, this.transform.position.z);
+		this.transform.Find ("DamageText").gameObject.SetActive (true);
+	}
 
     /// <summary>
     /// Caster unit calls Target method on target unit. 
@@ -324,6 +329,8 @@ public abstract class Unit : MonoBehaviour
 		Animator modelAnim = this.transform.Find("hero").gameObject.GetComponent<Animator>();
         
 		caster.turnUnit (this.transform.position);
+		//For values, we have temp floats
+		float start = HitPoints;
 
         //This unit takes damage from caster and checks if its front, side or backstab attack
         if (caster.CurrentSkill.NoEvade == false) {
@@ -335,9 +342,10 @@ public abstract class Unit : MonoBehaviour
                     def = def * 0.5f; Debug.Log("blocked"); 
                     //block animation
                     modelAnim.SetTrigger("block");
+					//DamageShow ("Blocked");
                 } else {
                     //hurt animation
-                    modelAnim.SetTrigger("hurt");
+					modelAnim.SetTrigger("hurt");
                 }
             }
 
@@ -345,7 +353,8 @@ public abstract class Unit : MonoBehaviour
 				casterAnim.SetTrigger("cast");
                 if ((100 - MagicEv) < randomNumber) { evade = true; Debug.Log("miss");
                     //magic evasion here
-                    modelAnim.SetTrigger("evade");
+					modelAnim.SetTrigger("evade");
+					//DamageShow ("Evaded");
                 } else {
                     //block animation
                     modelAnim.SetTrigger("hurt");
@@ -362,11 +371,16 @@ public abstract class Unit : MonoBehaviour
                 HitPoints += caster.CurrentSkill.SkillFormula(caster);
                 if (HitPoints > TotalHitPoints) {
 					HitPoints = TotalHitPoints;
+					//DamageShow ("Healed " + (int)(HitPoints - start));
 				}
 				//Dont have healed animation right now
 				modelAnim.SetTrigger("victory");
             }
-            else { RBGain(this, caster); HitPoints -= caster.CurrentSkill.SkillFormula(caster) * def; }
+            else {
+				RBGain(this, caster);
+				HitPoints -= caster.CurrentSkill.SkillFormula(caster) * def;
+				//DamageShow ((HitPoints - start).ToString());
+			}
         }
 
 
