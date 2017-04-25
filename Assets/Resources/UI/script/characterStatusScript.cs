@@ -32,56 +32,64 @@ public class characterStatusScript : MonoBehaviour {
 		}
 		if (!charImage.activeInHierarchy)
 			charImage.SetActive (true);
-
-		SlideHP (sliders [0], cellgrid.GetComponent<CellGrid> ().CurrentUnit.TotalHitPoints, cellgrid.GetComponent<CellGrid> ().CurrentUnit.HitPoints);
-		SlideIP (sliders [1], cellgrid.GetComponent<CellGrid> ().CurrentUnit.TotalImaginationPoints, cellgrid.GetComponent<CellGrid> ().CurrentUnit.ImaginationPoints);
-		SlideRB (sliders [2], 100f, cellgrid.GetComponent<CellGrid> ().CurrentUnit.RealityBreak);
-		SlideCT (sliders [3], 100f, cellgrid.GetComponent<CellGrid> ().CurrentUnit.ChargeTime);
+		float delta = Time.deltaTime;
+		SlideHP (sliders [0], cellgrid.GetComponent<CellGrid> ().CurrentUnit.TotalHitPoints, cellgrid.GetComponent<CellGrid> ().CurrentUnit.HitPoints, delta);
+		SlideIP (sliders [1], cellgrid.GetComponent<CellGrid> ().CurrentUnit.TotalImaginationPoints, cellgrid.GetComponent<CellGrid> ().CurrentUnit.ImaginationPoints, delta);
+		SlideRB (sliders [2], 100f, cellgrid.GetComponent<CellGrid> ().CurrentUnit.RealityBreak, delta);
+		SlideCT (sliders [3], 100f, cellgrid.GetComponent<CellGrid> ().CurrentUnit.ChargeTime, delta);
 	}
 
 	//Slides the sliders based on max and current value
-	private void SlideHP(Slider temp, float max, float value){
-		if (tempHP <= max) {
-			temp.maxValue = max;
-			tempHP = tempHP + (value - tempHP) * Time.deltaTime * 3;
+	private void SlideHP(Slider temp, float max, float value, float delta){
+		/*if (tempHP <= max) {
+			//temp.maxValue = max;
+			tempHP = tempHP + (value - tempHP) * delta;
 			temp.value = tempHP;
 		} else {
-			temp.value = value;
-			tempHP = tempHP + (max - tempHP) * Time.deltaTime * 3;
+			//temp.value = value;
+			tempHP = tempHP + (max - tempHP) * delta;
 			temp.maxValue = tempHP;
-		}
+		}*/
+		tempHP = (value / max) * 100 + ((value / max) * 100 - tempHP) * delta;
+		temp.value = tempHP;
 	}
-	private void SlideIP(Slider temp, float max, float value){
-		if (tempIP <= max) {
+	private void SlideIP(Slider temp, float max, float value, float delta){
+		/*if (tempIP <= max) {
 			temp.maxValue = max;
-			tempIP = tempIP + (value - tempIP) * Time.deltaTime * 3;
+			tempIP = tempIP + (value - tempIP) * delta * 3;
 			temp.value = tempIP;
 		} else {
 			temp.value = value;
-			tempHP = tempHP + (max - tempHP) * Time.deltaTime * 3;
+			tempHP = tempHP + (max - tempHP) * delta * 3;
 			temp.maxValue = tempHP;
-		}
+		}*/
+		tempIP = (value / max) * 100 + ((value / max) * 100 - tempIP) * delta;
+		temp.value = tempIP;
 	}
-	private void SlideRB(Slider temp, float max, float value){
-		if (tempRB <= max) {
+	private void SlideRB(Slider temp, float max, float value, float delta){
+		/*if (tempRB <= max) {
 			temp.maxValue = max;
-			tempHP = tempRB + (value - tempRB) * Time.deltaTime * 3;
+			tempHP = tempRB + (value - tempRB) * delta * 3;
 			temp.value = tempRB;
 		} else {
 			temp.value = value;
-			tempHP = tempRB + (max - tempRB) * Time.deltaTime * 3;
+			tempHP = tempRB + (max - tempRB) * delta * 3;
 			temp.maxValue = tempRB;
-		}
+		}*/
+		tempRB = (value / max) * 100 + ((value / max) * 100 - tempRB) * delta;
+		temp.value = tempRB;
 	}
-	private void SlideCT(Slider temp, float max, float value){
-		if (tempCT <= max) {
+	private void SlideCT(Slider temp, float max, float value, float delta){
+		/*if (tempCT <= max) {
 			temp.maxValue = max;
-			tempCT = tempCT + (value - tempCT) * Time.deltaTime * 3;
+			tempCT = tempCT + (value - tempCT) * delta * 3;
 			temp.value = tempCT;
 		} else {
 			temp.value = value;
-			tempHP = tempCT + (max - tempCT) * Time.deltaTime * 3;
+			tempHP = tempCT + (max - tempCT) * delta * 3;
 			temp.maxValue = tempCT;
-		}
+		}*/
+		tempCT= (value / max) * 100 + ((value / max) * 100 - tempCT) * delta;
+		temp.value = tempCT;
 	}
 }

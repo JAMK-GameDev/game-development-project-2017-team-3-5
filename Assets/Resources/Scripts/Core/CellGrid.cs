@@ -194,6 +194,10 @@ public class CellGrid : MonoBehaviour
             }
 		}
     }
+
+	public void Restart(){
+		Application.LoadLevel (Application.loadedLevel);
+	}
     
     /// <summary>
     /// Method is called once, at the beggining of the game.
